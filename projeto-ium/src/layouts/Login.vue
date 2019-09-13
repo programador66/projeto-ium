@@ -35,9 +35,9 @@
             val => val !== null && val !== '' || 'Campo não pode ser nullo'
           ]"
         />
-        <div id="ntc"> Não tem conta? Crie uma nova conta  </div>
-        <div>
-          <q-btn label="Submit" @click="onSubmit" text-color="blue" color="white"/>
+        <div id="ntc"><a  @click="criarNovaConta"> Não tem conta? Crie uma nova conta  </a></div>
+        <div id="btnEntrar">
+          <q-btn label="Entrar" @click="onSubmit" text-color="blue" color="white"/>
         </div>
       </q-form>
     </div>
@@ -46,6 +46,7 @@
 
 <script>
 import imagem from '../img/user.png';
+import MyLayout from '../layouts/MyLayout';
 
 export default {
   name: 'Login',
@@ -69,18 +70,20 @@ export default {
       }
       else {
         this.$q.notify({
-          color: 'green-4',
-          textColor: 'white',
+          color: 'white',
+          textColor: 'blue',
           icon: 'fas fa-check-circle',
           message: 'Submitted'
         })
       }
     },
-
     onReset () {
       this.usuario = null
       this.senha = null
       this.accept = false
+    },
+    criarNovaConta(){    
+      this.$router.push('/');
     }
   }
 }
@@ -95,5 +98,11 @@ export default {
 }
 #ntc{
   color:white;
+  margin:5% 16%;
+  text-decoration: underline
+}
+
+#btnEntrar{
+   margin:15% 40%;
 }
 </style>

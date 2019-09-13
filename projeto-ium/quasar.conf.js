@@ -58,7 +58,9 @@ module.exports = function (ctx) {
         'QInput',
         'QForm',
         'QToggle',
-        'QImg'
+        'QImg',
+        'QAvatar',
+        'QRouteTab'
       ],
 
       directives: [

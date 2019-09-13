@@ -1,20 +1,22 @@
 <template>
-<div>
-  <toolbar/>
-</div>  
+  <div>
+    <login/>
+  </div>
 </template>
 
 <style lang="stylus" scoped>
- 
+  .text{
+    color:blue
+  }
 </style>
 
 <script>
-import toolbar  from '../layouts/Toobar'
+import login from '../layouts/Login'
 
 export default {
     components:{
-      toolbar
-    },
+      login
+    }, 
     data () {
     return {
        tab: 'one'
