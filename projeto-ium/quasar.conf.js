@@ -60,7 +60,13 @@ module.exports = function (ctx) {
         'QToggle',
         'QImg',
         'QAvatar',
-        'QRouteTab'
+        'QRouteTab',
+        'QList',
+        'QPageScroller',
+        'QInfiniteScroll',
+        'QSpinnerDots',
+        'QScrollArea'
+
       ],
 
       directives: [

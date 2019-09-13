@@ -13,6 +13,10 @@ const routes = [
   {
     path: '/login',
     component: () => import('pages/login')
+  },
+  {
+    path: '/vagas',
+    component: () => import('pages/Vagas')
   }
 ]
 

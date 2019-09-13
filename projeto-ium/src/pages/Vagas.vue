@@ -1,20 +1,16 @@
 <template>
 <div>
-  <toolbar/>
+  vagas
 </div>  
 </template>
 
-<style scoped>
+<style lang="stylus" scoped>
  
 </style>
 
 <script>
-import toolbar  from '../layouts/Toobar'
 
 export default {
-    components:{
-      toolbar
-    },
     data () {
     return {
        tab: 'one'

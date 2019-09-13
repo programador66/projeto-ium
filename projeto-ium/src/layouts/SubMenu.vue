@@ -1,6 +1,6 @@
 <template>
   
-  <div>
+  <div  >
       <!-- <q-tabs align="left">
         <q-route-tab to="/page1" label="Page One" />
         <q-route-tab to="/page2" label="Page Two" />
@@ -8,15 +8,16 @@
 
       </q-tabs> -->
        <q-tabs v-model="tab" class="text-teal" >
-        <q-tab label="Tab one" class="text" name="one" />
-        <q-tab label="Tab two" class="text" name="two" />
-        <q-tab label="Tab three" class="text" name="three" />
+        <q-tab label="vagas" class="text" name="one" />
+        <q-tab label="Seleções" class="text" name="two" />
+        <q-tab label="Perfil" class="text" name="three" />
       </q-tabs>
 
       <q-separator />
+      
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="one">
-          <a style="color:red">The QCard component is a great way to display important pieces of grouped content.</a>
+          <vagas/>
         </q-tab-panel>
 
         <q-tab-panel name="two">
@@ -34,7 +35,12 @@
 </template>
 
 <script>
+import vagas from '../layouts/Vagas';
+
 export default {
+  components:{
+    vagas
+  },
   data () {
     return {
       left: false,
