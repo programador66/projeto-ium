@@ -3,7 +3,7 @@ const login=false;
 
 const routes = [
   {
-    path: '/',
+    path: '/index',
     component: () => import('pages/Index.vue')
     
     // children: [
@@ -11,7 +11,7 @@ const routes = [
     // ]
   },
   {
-    path: '/login',
+    path: '/',
     component: () => import('pages/login')
   },
   {

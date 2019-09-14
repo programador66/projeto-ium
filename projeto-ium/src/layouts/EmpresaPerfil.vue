@@ -59,7 +59,7 @@ export default {
   },
   methods:{
     menuPrincipal(){
-      this.$router.push('/');
+      this.$router.push('/index');
     }
   }
 }

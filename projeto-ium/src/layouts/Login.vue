@@ -83,10 +83,10 @@ export default {
       this.accept = false
     },
     criarNovaConta(){    
-      this.$router.push('/');
+      this.$router.push('/index');
     },
     entrar(){
-      this.$router.push('/');
+      this.$router.push('/index');
     }
   }
 }
