@@ -37,7 +37,7 @@
         />
         <div id="ntc"><a  @click="criarNovaConta"> Não tem conta? Crie uma nova conta  </a></div>
         <div id="btnEntrar">
-          <q-btn label="Entrar" @click="onSubmit" text-color="blue" color="white"/>
+          <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
         </div>
       </q-form>
     </div>
@@ -83,6 +83,9 @@ export default {
       this.accept = false
     },
     criarNovaConta(){    
+      this.$router.push('/');
+    },
+    entrar(){
       this.$router.push('/');
     }
   }

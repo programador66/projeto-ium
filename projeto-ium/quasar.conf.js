@@ -22,7 +22,10 @@ module.exports = function (ctx) {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      'material-icons', // optional, you are not bound to it
+      'material-icons-outlined',
+      'material-icons-round',
+      'material-icons-sharp',
     ],
 
     framework: {
@@ -65,7 +68,9 @@ module.exports = function (ctx) {
         'QPageScroller',
         'QInfiniteScroll',
         'QSpinnerDots',
-        'QScrollArea'
+        'QScrollArea',
+        'QBadge',
+        'Scroll'
 
       ],
 

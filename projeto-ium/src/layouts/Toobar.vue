@@ -6,11 +6,14 @@
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-          IUM-Project
+          <a style="margin-top:2%;">IUM-Project</a>
         </q-toolbar-title>
+          <q-avatar name="mails" icon="mail" label="Mails" style="float:right;margin-top:1%;" @click="chat">
+            <q-badge color="red" floating>2</q-badge>
+          </q-avatar>
+            <q-avatar style="float:right;margin-top:1%;">
+                <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+            </q-avatar>
       </q-toolbar>
       <sub-menu/>
     </q-header>
@@ -33,6 +36,11 @@ export default {
     return {
       left: false,
       tab:'one'
+    }
+  },
+  methods:{
+    chat(){
+      alert('em construção');
     }
   }
 }

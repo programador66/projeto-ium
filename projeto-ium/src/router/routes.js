@@ -17,6 +17,10 @@ const routes = [
   {
     path: '/vagas',
     component: () => import('pages/Vagas')
+  },
+  {
+    path: '/empresa-perfil',
+    component: () => import('pages/Empresa')
   }
 ]
 

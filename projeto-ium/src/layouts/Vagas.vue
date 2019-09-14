@@ -2,26 +2,35 @@
   <div class="col-12">
       <q-scroll-area
         style="height: 600px; max-width: 400px;"
+        
       >
-     
           <q-list bordered animated>
             <div v-for="c in 6" :key="c">
-            <q-card class="my-card" style="margin-bottom:2.5%;">
+            <q-card class="my-card" style="margin-bottom:3%;">
                 <q-item>
                     <q-item-section avatar>
-                      <q-avatar>
+                      <q-avatar >
                         <img src="https://cdn.quasar.dev/img/avatar2.jpg">
                       </q-avatar>
                     </q-item-section>
 
                     <q-item-section>
-                      <q-item-label ><a class="title">Desenvolvedor PHP</a></q-item-label>
+                      <q-item-label ><a class="title">Desenvolvedor PHP</a></q-item-label> 
                       <q-item-label caption>Empresa - Cidade, país</q-item-label>
                     </q-item-section>
+                      <q-item-label caption style="font-size:10px; margin-top:1.5%;">Postada á 3 horas</q-item-label>
+                   
                 </q-item>
+
                 <q-card-section>
                   <a class="textBody">{{ lorem }}</a>
+                  <q-item-section>
+                    <q-card-section>
+                  <q-btn color="primary" style="float:right;" @click="empresaPerfil">Candidatar-se</q-btn>
                 </q-card-section>
+                  </q-item-section>
+                </q-card-section>
+                
             </q-card >
             
            
@@ -35,7 +44,12 @@
 export default {
    data () {
     return {
-     lorem:'lorem ispun ajjsjju jjj'
+     lorem:'lorem ispun ajjsjju jjj asdas dasdasda asdasdasd asdasdas das asda sd'
+    }
+  },
+  methods:{
+    empresaPerfil(){
+      this.$router.push('/empresa-perfil');
     }
   }
 }
