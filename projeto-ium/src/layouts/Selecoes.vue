@@ -5,7 +5,7 @@
         
       >
           <q-list bordered animated>
-            <div v-for="c in 6" :key="c">
+            <div v-for="c in 4" :key="c">
             <q-card class="my-card" style="margin-bottom:3%;">
                 <q-item>
                     <q-item-section avatar>
@@ -26,7 +26,7 @@
                   <a class="textBody">{{ lorem }}</a>
                   <q-item-section>
                     <q-card-section>
-                      <q-btn color="primary" style="float:right;" @click="empresaPerfil">Visualizar</q-btn>
+                      <q-btn color="orange" style="float:right;" @click="confirm">desistir</q-btn>
                     </q-card-section>
                   </q-item-section>
                 </q-card-section>
@@ -44,13 +44,29 @@
 export default {
    data () {
     return {
-     lorem:'lorem ispun ajjsjju jjj asdas dasdasda asdasdasd asdasdas das asda sd'
+     lorem:'lorem ispun jiamso nnjjaum join th amalum'
     }
   },
   methods:{
     empresaPerfil(){
       this.$router.push('/empresa-perfil');
-    }
+    },
+    confirm () {
+      this.$q.dialog({
+        title: 'Desistir da Vaga',
+        message: 'Deseja realmente desistir da vaga?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        console.log('>>>> OK')
+      }).onOk(() => {
+        console.log('>>>> second OK catcher')
+      }).onCancel(() => {
+        console.log('>>>> Cancel')
+      }).onDismiss(() => {
+        console.log('I am triggered on both OK and Cancel')
+      })
+    },
   }
 }
 </script>

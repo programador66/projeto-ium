@@ -10,8 +10,11 @@
 
     <div class="q-pa-md row items-start q-gutter-md">
     <q-card class="my-card">
-      <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
+      
+      <img src="https://cdn.quasar.dev/img/mountains.jpg" >
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
+            <q-btn fab icon="add" color="orange" />
+          </q-page-sticky>
       <q-card-section>
         <div>
           <div class="text-h6">Desenvolvedor PHP   <div class="posttime"> Postada á 3 horas </div></div>      
@@ -38,7 +41,6 @@
       <q-card-section>
         <div v-for="c in 5" :key="c"><a>{{ atribuicoes }}</a></div> 
       </q-card-section>
-
     </q-card>
     </div>
    </q-layout>

@@ -21,9 +21,7 @@
         </q-tab-panel>
 
         <q-tab-panel name="two">
-           <a style="color:red">With so much content to display at once, and often so little screen real-estate,
-          Cards have fast become the design pattern of choice for many companies, including
-          the likes of Google and Twitter.</a>
+           <selecoes/>
         </q-tab-panel>
 
       </q-tab-panels>
@@ -36,10 +34,11 @@
 
 <script>
 import vagas from '../layouts/Vagas';
+import selecoes from '../layouts/Selecoes';
 
 export default {
   components:{
-    vagas
+    vagas,selecoes
   },
   data () {
     return {

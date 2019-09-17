@@ -70,7 +70,8 @@ module.exports = function (ctx) {
         'QSpinnerDots',
         'QScrollArea',
         'QBadge',
-        'Scroll'
+        'Scroll',
+        'QPageSticky'
 
       ],
 
@@ -80,7 +81,8 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'Dialog'
       ]
     },
 
