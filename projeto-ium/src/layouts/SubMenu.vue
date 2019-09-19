@@ -24,6 +24,9 @@
            <selecoes/>
         </q-tab-panel>
 
+        <q-tab-panel name="three">
+           <perfil/>
+        </q-tab-panel>
       </q-tab-panels>
     
     <q-page-container>
@@ -35,10 +38,11 @@
 <script>
 import vagas from '../layouts/Vagas';
 import selecoes from '../layouts/Selecoes';
+import perfil from '../layouts/Perfil';
 
 export default {
   components:{
-    vagas,selecoes
+    vagas,selecoes,perfil
   },
   data () {
     return {
