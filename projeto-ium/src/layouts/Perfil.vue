@@ -1,22 +1,20 @@
 <template>
-  <div class="perfil">
-      <q-card class="my-card">
-      <q-card-section>
-        <div id="title1" >Seu Currículo ainda não está cadastrado.</div>
-        <div id="title2">Crie um agora e tenha mais chances em novas oportunidades</div>
-      </q-card-section>
+<div class="q-pa-md">
 
-      
-
-      <q-separator />
-
-      
+    <q-card class="my-card" >
+        <q-card-section >
+          <div id="title1" >Seu Currículo ainda não está cadastrado.</div>
+            <div id="title2">Crie um agora e tenha mais chances em novas oportunidades</div>
+        </q-card-section>
+          <q-card-section >
+            <div style="text-align:center;margin-top:10%;"><q-btn color="primary">Cadastrar</q-btn></div>
+          </q-card-section>
+          
     </q-card>
   </div>   
 </template>
 
 <script>
-// import imagem from '../img/ilustracao.svg';
 
 export default {
    data () {
@@ -30,11 +28,10 @@ export default {
 
 
 <style scoped>
-.perfil{
-  background-image: url("../img/ilustracao.png");
-  background-color: white;
-  height: 800px;
-}
+  .my-card{
+    margin-top:25%;
+    height: 300px;
+  }
 #title1{
   font-family: Helvetica;
   font-weight:bold;
@@ -47,6 +44,7 @@ export default {
   font-weight:bold;
   font-size:18px;
   color:#000000;
-  text-align: center
+  text-align: center;
+  margin-top: 5%;
 }
 </style>

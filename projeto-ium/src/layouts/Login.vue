@@ -16,8 +16,8 @@
         <q-input
           color="white"
           filled
-          v-model="usuario"
-          label="Usuário"
+          v-model="email"
+          label="E-mail"
           lazy-rules
           dark
           :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
@@ -35,7 +35,8 @@
             val => val !== null && val !== '' || 'Campo não pode ser nullo'
           ]"
         />
-        <div id="ntc"><a  @click="criarNovaConta"> Não tem conta? Crie uma nova conta  </a></div>
+        <div id="ntc"><a> Não tem conta? Crie uma nova conta  </a></div>
+        <span> <q-btn  id="face" @click="facebook" /></span> <span> <q-btn id="google" /></span>
         <div id="btnEntrar">
           <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
         </div>
@@ -47,35 +48,34 @@
 <script>
 import imagem from '../img/user.png';
 import MyLayout from '../layouts/MyLayout';
-
+import firebase from 'firebase';
 export default {
   name: 'Login',
   data () {
     return {
-      usuario: null,
+      email: null,
       senha: null,
       url: imagem,
-      accept: true
+      accept: true,
     }
   },
    methods: {
     onSubmit () {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: 'red-5',
-          textColor: 'white',
-          icon: 'fas fa-exclamation-triangle',
-          message: 'You need to accept the license and terms first'
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
+          (user) => {
+            this.$router.push('/index');
+        },
+        (err) => {
+            this.$q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'fas fa-exclamation-triangle',
+            message: 'Email ou senha inválido'
         })
-      }
-      else {
-        this.$q.notify({
-          color: 'white',
-          textColor: 'blue',
-          icon: 'fas fa-check-circle',
-          message: 'Submitted'
-        })
-      }
+        
+          }
+        )
+     
     },
     onReset () {
       this.usuario = null
@@ -83,10 +83,55 @@ export default {
       this.accept = false
     },
     criarNovaConta(){    
-      this.$router.push('/index');
+       firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
+          (user) => {
+            this.$router.push('/index');
+        },
+        (err) => {
+            this.$q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'fas fa-exclamation-triangle',
+            message: 'Email ou senha inválido'
+        })
+        
+          }
+        )
     },
     entrar(){
-      this.$router.push('/index');
+      firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
+          (user) => {
+            this.$router.push('/index');
+        },
+        (err) => {
+            this.$q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'fas fa-exclamation-triangle',
+            message: 'Usuário inexistente'
+        })
+        
+          }
+        )
+    },
+    facebook(){
+      var provider = new firebase.auth.FacebookAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+    
+          var token = result.credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+          // ...
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
+        });
     }
   }
 }
@@ -102,10 +147,23 @@ export default {
 #ntc{
   color:white;
   margin:5% 16%;
-  text-decoration: underline
 }
 
 #btnEntrar{
-   margin:15% 40%;
+   margin:10% 40%;
+}
+
+#face{
+  width: 160px;
+  height: 32px;
+  background-image:url('../img/Image 2.png');
+  background-size: 105%;
+}
+
+#google{
+  width: 160px;
+  height: 38px;
+  background-image:url('../img/google.png');
+  background-size: 102%;
 }
 </style>

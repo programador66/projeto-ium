@@ -24,7 +24,7 @@
            <selecoes/>
         </q-tab-panel>
 
-        <q-tab-panel name="three">
+        <q-tab-panel name="three" id="perfil">
            <perfil/>
         </q-tab-panel>
       </q-tab-panels>
@@ -57,5 +57,10 @@ export default {
 <style scoped>
 .text{
     color: white
+  }
+  #perfil{
+    background-image: url("../img/ilustracao.png");
+    background-color: white;
+    height: 800px;
   }
 </style>
