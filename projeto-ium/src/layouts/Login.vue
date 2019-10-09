@@ -99,6 +99,7 @@ export default {
         )
     },
     entrar(){
+      
       firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
           (user) => {
             this.$router.push('/index');
