@@ -71,7 +71,8 @@ module.exports = function (ctx) {
         'QScrollArea',
         'QBadge',
         'Scroll',
-        'QPageSticky'
+        'QPageSticky',
+        'QCircularProgress'
 
       ],
 

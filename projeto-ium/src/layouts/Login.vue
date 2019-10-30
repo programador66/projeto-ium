@@ -8,39 +8,49 @@
               style="height: 140px; max-width: 150px"
               />
         </div>
-       
-      <q-form
-        class="q-gutter-md"
-        color="white"
-      >
-        <q-input
+      <div id="progress" v-show="mostrarProgress">
+       <q-circular-progress
+          indeterminate
+          size="50px"
           color="white"
-          filled
-          v-model="email"
-          label="E-mail"
-          lazy-rules
-          dark
-          :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
+          class="q-ma-md"
         />
+      </div>
 
-        <q-input
-          filled
+     <div id="form" v-show="!mostrarProgress">  
+        <q-form
+          class="q-gutter-md"
           color="white"
-          v-model="senha"
-          label="Senha"
-           dark
-          lazy-rules
-          type="password"
-          :rules="[
-            val => val !== null && val !== '' || 'Campo não pode ser nullo'
-          ]"
-        />
-        <div id="ntc"><a> Não tem conta? Crie uma nova conta  </a></div>
-        <span> <q-btn  id="face" @click="facebook" /></span> <span> <q-btn id="google" /></span>
-        <div id="btnEntrar">
-          <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
+        >
+          <q-input
+            color="white"
+            filled
+            v-model="email"
+            label="E-mail"
+            lazy-rules
+            dark
+            :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
+          />
+
+          <q-input
+            filled
+            color="white"
+            v-model="senha"
+            label="Senha"
+            dark
+            lazy-rules
+            type="password"
+            :rules="[
+              val => val !== null && val !== '' || 'Campo não pode ser nullo'
+            ]"
+          />
+          <div id="ntc"><a> Não tem conta? Crie uma nova conta  </a></div>
+          <span> <q-btn  id="face" @click="facebook" /></span> <span> <q-btn id="google" /></span>
+          <div id="btnEntrar">
+            <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
+          </div>
+        </q-form>
         </div>
-      </q-form>
     </div>
   </q-layout>
 </template>
@@ -57,6 +67,7 @@ export default {
       senha: null,
       url: imagem,
       accept: true,
+      mostrarProgress:false
     }
   },
    methods: {
@@ -100,20 +111,26 @@ export default {
     },
     entrar(){
       
-      firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
-          (user) => {
-            this.$router.push('/index');
-        },
-        (err) => {
-            this.$q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'fas fa-exclamation-triangle',
-            message: 'Usuário inexistente'
-        })
+      // firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
+      //     (user) => {
+      //       this.$router.push('/index');
+      //   },
+      //   (err) => {
+      //       this.$q.notify({
+      //       color: 'red-5',
+      //       textColor: 'white',
+      //       icon: 'fas fa-exclamation-triangle',
+      //       message: 'Usuário inexistente'
+      //   })
         
-          }
-        )
+      //     }
+      //   )
+      this.mostrarProgress = true;
+      let foto = document.getElementById("foto");
+      foto.style.transitionDelay = "0.1s";
+      foto.style.transitionDuration = "3s";
+      foto.style.transform = 'scale(1.3)';
+       
     },
     facebook(){
       var provider = new firebase.auth.FacebookAuthProvider();
@@ -139,6 +156,16 @@ export default {
 </script>
 
 <style scoped>
+
+.grow
+{
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+#progress {
+  margin:20% 38%;
+}
 #login {
   background-color:#1E88E5;
 }
