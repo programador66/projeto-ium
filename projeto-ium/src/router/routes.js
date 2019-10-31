@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: '/',
-    component: () => import('pages/login')
+    component: () => import('pages/splashArt')
   },
   {
     path: '/vagas',
