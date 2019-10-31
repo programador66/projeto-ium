@@ -31,7 +31,7 @@ export default {
   data () {
     return {
       url: imagem,
-      mostrarProgress:false
+      mostrarProgress:true
     }
   },
    methods: {

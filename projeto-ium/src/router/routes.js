@@ -21,6 +21,10 @@ const routes = [
   {
     path: '/empresa-perfil',
     component: () => import('pages/Empresa')
+  },
+  {
+    path: '/login',
+    component: () => import('pages/login')
   }
 ]
 
