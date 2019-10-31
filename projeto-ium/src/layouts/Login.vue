@@ -108,29 +108,9 @@ export default {
     },
     criarNovaConta(){  
         this.novoUsuario = true;
-        // this.$q.notify({
-        //     color: 'red-5',
-        //     textColor: 'white',
-        //     icon: 'fas fa-exclamation-triangle',
-        //     message: 'Email ou senha inválido'
-        // })
     },
     entrar(){
-      
-      // firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
-      //     (user) => {
-      //       this.$router.push('/index');
-      //   },
-      //   (err) => {
-      //       this.$q.notify({
-      //       color: 'red-5',                                                      
-      //       textColor: 'white',
-      //       icon: 'fas fa-exclamation-triangle',
-      //       message: 'Usuário inexistente'
-      //   })
-        
-      //     }
-      //   )
+  
       this.mostrarProgress = true;
       let foto = document.getElementById("foto");
       foto.style.transitionDelay = "0.1s";
