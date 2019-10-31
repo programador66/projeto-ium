@@ -31,7 +31,7 @@
             dark
             :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
           />
-
+      
           <q-input
             filled
             color="white"
@@ -44,13 +44,41 @@
               val => val !== null && val !== '' || 'Campo não pode ser nullo'
             ]"
           />
-          <div id="ntc"><a> Não tem conta? Crie uma nova conta  </a></div>
-          <span> <q-btn  id="face" @click="facebook" /></span> <span> <q-btn id="google" /></span>
-          <div id="btnEntrar">
-            <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
+
+          <div v-if="!novoUsuario">
+              <div id="ntc">
+                <a style="text-decoration:underline white" @click="criarNovaConta">
+                  Não tem conta? Crie uma nova conta
+                </a>
+              </div>
+                <div id="opEntrada"> 
+                  <span> <q-btn  id="face" @click="facebook" /></span>
+                  <span> <q-btn id="google" /></span>
+                </div>
+                <div id="btnEntrar">
+                    <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
+                </div>
           </div>
+
+          <div v-else>
+            <q-input
+            filled
+            color="white"
+            v-model="novaSenha"
+            label="Confirmar Senha"
+            dark
+            lazy-rules
+            type="password"
+            :rules="[
+              val => val !== null && val !== '' || 'Campo não pode ser nullo'
+            ]"
+            />
+            <div id="btnCadastrar">
+              <q-btn label="Cadastrar" @click="CriarNovoUsuario" text-color="blue" color="white"/>
+            </div>
+          </div> 
         </q-form>
-        </div>
+      </div>
     </div>
   </q-layout>
 </template>
@@ -65,49 +93,27 @@ export default {
     return {
       email: null,
       senha: null,
+      novaSenha:null,
+      novoUsuario:false,
       url: imagem,
       accept: true,
       mostrarProgress:false
     }
   },
    methods: {
-    onSubmit () {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
-          (user) => {
-            this.$router.push('/index');
-        },
-        (err) => {
-            this.$q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'fas fa-exclamation-triangle',
-            message: 'Email ou senha inválido'
-        })
-        
-          }
-        )
-     
-    },
     onReset () {
       this.usuario = null
       this.senha = null
       this.accept = false
     },
-    criarNovaConta(){    
-       firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
-          (user) => {
-            this.$router.push('/index');
-        },
-        (err) => {
-            this.$q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'fas fa-exclamation-triangle',
-            message: 'Email ou senha inválido'
-        })
-        
-          }
-        )
+    criarNovaConta(){  
+        this.novoUsuario = true;
+        // this.$q.notify({
+        //     color: 'red-5',
+        //     textColor: 'white',
+        //     icon: 'fas fa-exclamation-triangle',
+        //     message: 'Email ou senha inválido'
+        // })
     },
     entrar(){
       
@@ -117,7 +123,7 @@ export default {
       //   },
       //   (err) => {
       //       this.$q.notify({
-      //       color: 'red-5',
+      //       color: 'red-5',                                                      
       //       textColor: 'white',
       //       icon: 'fas fa-exclamation-triangle',
       //       message: 'Usuário inexistente'
@@ -130,7 +136,31 @@ export default {
       foto.style.transitionDelay = "0.1s";
       foto.style.transitionDuration = "3s";
       foto.style.transform = 'scale(1.3)';
+      setTimeout(() => {
+        this.$router.push('/index');
+      },2000);
+
+    },
+    CriarNovoUsuario(){
+
+      this.mostrarProgress = true;
+      let foto = document.getElementById("foto");
+      foto.style.transitionDelay = "0.1s";
+      foto.style.transitionDuration = "3s";
+      foto.style.transform = 'scale(1.3)';
+
+      this.$q.notify({
+        color: 'white',                                                      
+        timeout: 1500,
+        textColor: 'blue',
+        message: 'Cadastro realizado com sucesso!',
+        actions: [{ icon: 'close', color: 'blue' }]
        
+      })
+      setTimeout(() => {
+        window.location.reload();
+      },2000);
+
     },
     facebook(){
       var provider = new firebase.auth.FacebookAuthProvider();
@@ -172,13 +202,22 @@ export default {
 #foto{
   margin:20% 28%;
 }
+
 #ntc{
   color:white;
   margin:5% 16%;
 }
 
+#opEntrada{
+  margin-left:1.5%;
+}
+
 #btnEntrar{
    margin:10% 40%;
+}
+
+#btnCadastrar{
+   margin:10% 35%;
 }
 
 #face{
@@ -193,5 +232,29 @@ export default {
   height: 38px;
   background-image:url('../img/google.png');
   background-size: 102%;
+}
+
+@media only screen and (max-width:320px) {
+  #face{
+  width: 130px;
+  height: 32px;
+  background-size: 103%; 
+  margin-right: 2%;
+}
+
+#google{
+  width: 130px;
+  height: 38px;
+  background-size: 100%; 
+}
+#ntc{
+  color:white;
+  margin:5% 10%;
+}
+
+
+#foto{
+  margin:12% 28%;
+}
 }
 </style>
