@@ -1,4 +1,5 @@
 <template>
+<q-layout>
   <div class="col-12">
       <q-scroll-area
         style="height: 600px; max-width: 400px;"
@@ -37,7 +38,8 @@
             </div>
           </q-list> 
   </q-scroll-area>
-  </div>   
+  </div> 
+</q-layout>   
 </template>
 
 <script>

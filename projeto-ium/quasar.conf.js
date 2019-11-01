@@ -73,7 +73,7 @@ module.exports = function (ctx) {
         'Scroll',
         'QPageSticky',
         'QCircularProgress',
-        'QTooltip'
+        'QTooltip',
       ],
 
       directives: [
@@ -102,7 +102,8 @@ module.exports = function (ctx) {
 
     devServer: {
       // https: true,
-      // port: 8080,
+      host: '0.0.0.0',
+      port: 8081,
       open: true // opens browser window automatically
     },
 
