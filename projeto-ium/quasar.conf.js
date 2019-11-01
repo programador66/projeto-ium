@@ -72,8 +72,8 @@ module.exports = function (ctx) {
         'QBadge',
         'Scroll',
         'QPageSticky',
-        'QCircularProgress'
-
+        'QCircularProgress',
+        'QTooltip'
       ],
 
       directives: [

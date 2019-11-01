@@ -8,16 +8,23 @@
               style="height: 140px; max-width: 150px"
               />
         </div>
-      <div id="progress" v-show="mostrarProgress">
-       <q-circular-progress
-          indeterminate
-          size="50px"
+
+      <div style="margin-left:30%;color:white;font-family:Helvetica Neue;font-weight:bold;font-size:20px">
+        <span> Job For Students</span>
+      </div>
+
+      <div class="splash" v-show="mostrarProgress">
+      
+        <q-spinner-dots
           color="white"
-          class="q-ma-md"
+          size="3em"
         />
+        <q-tooltip :offset="[0, 8]">QSpinnerDots</q-tooltip>
+      
       </div>
 
      
+
     </div>
   </q-layout>
 </template>
@@ -25,17 +32,27 @@
 <script>
 import imagem from '../img/user.png';
 
-
 export default {
   name: 'splashArt',
   data () {
     return {
       url: imagem,
-      mostrarProgress:true
+      mostrarProgress:false
     }
   },
+  mounted(){
+    this.splashArt();
+  },
    methods: {
+    splashArt(){
+     
+      this.mostrarProgress = true;
+      setTimeout(() => {
+        this.$router.push('/login');
+      },2000);
+
     
+    }
   }
 }
 </script>
@@ -48,8 +65,8 @@ export default {
   -ms-transform: scale(1.3);
   transform: scale(1.3);
 }
-#progress {
-  margin:20% 38%;
+.splash {
+  margin:20% 43%;
 }
 #login {
   background-color:#1E88E5;
@@ -67,7 +84,9 @@ export default {
 
 @media only screen and (max-width:320px) {
  
-
+#splash {
+  margin:20% 44%;
+}
 
 }
 </style>
