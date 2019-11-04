@@ -168,7 +168,7 @@ export default {
           timeout: 1500,
           textColor: 'white',
           message: res,
-          actions: [{ icon: 'close', color: 'blue' }]
+          actions: [{ icon: 'close', color: 'white' }]
           })
 
           setTimeout(() => {
@@ -193,17 +193,46 @@ export default {
       foto.style.transitionDuration = "3s";
       foto.style.transform = 'scale(1.3)';
 
-      this.$q.notify({
-        color: 'white',                                                      
-        timeout: 1500,
-        textColor: 'blue',
-        message: 'Cadastro realizado com sucesso!',
-        actions: [{ icon: 'close', color: 'blue' }]
-       
-      })
-      setTimeout(() => {
-        window.location.reload();
-      },2000);
+      this.$axios.post('http://projeto-ium/api/cliente/cadastro',{
+        name:this.nome,
+        email:this.email,
+        password:this.senha,
+        password_confirmation:this.novaSenha
+        }
+        ).then(response => {
+          console.log(response.data);
+          
+          if (response.data.success) {
+            const msg = response.data.message;
+            this.$q.notify({
+              color: 'white',                                                      
+              timeout: 1500,
+              textColor: 'blue',
+              message: msg,
+              actions: [{ icon: 'close', color: 'blue' }]
+            
+            })
+            setTimeout(() => {
+              window.location.reload();
+            },2000);
+          } else {
+
+            const error = response.data;
+            this.$q.notify({
+            color: 'red',                                                      
+            timeout: 1500,
+            textColor: 'white',
+            message: error,
+            actions: [{ icon: 'close', color: 'white' }]
+            })  
+
+            setTimeout(() => {
+              this.mostrarProgress = false;
+            },2000);
+          } 
+         
+        })
+      
 
     },
     facebook(){
