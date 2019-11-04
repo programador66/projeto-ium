@@ -6,19 +6,6 @@ import firebase from 'firebase';
 
 Vue.config.productionTip = false;
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD_HdACMH7cMUjnUhnmml8LQWBrccYtkBs",
-  authDomain: "first-job-for-student.firebaseapp.com",
-  databaseURL: "https://first-job-for-student.firebaseio.com",
-  projectId: "first-job-for-student",
-  storageBucket: "first-job-for-student.appspot.com",
-  messagingSenderId: "802123355168",
-  appId: "1:802123355168:web:3f995cf91fbcfdb4c35845"
-};
-
-
-firebase.initializeApp(firebaseConfig);
-
 Vue.use(Vuex)
 
 /*

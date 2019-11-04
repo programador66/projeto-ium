@@ -74,12 +74,12 @@
               <q-item-label caption>@QuasarFramework</q-item-label>
             </q-item-section>
           </q-item>
-            <q-item clickable tag="a" href="">
+            <q-item >
             <q-item-section avatar>
               <q-icon name="logout" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>Sair</q-item-label>
+              <q-item-label @click="sair()">Sair</q-item-label>
             </q-item-section>
           </q-item>
         </q-scroll-area>
@@ -91,8 +91,8 @@
             <q-avatar size="56px" class="q-mb-sm">
               <img src="https://cdn.quasar.dev/img/avatar2.jpg">
             </q-avatar>
-            <div class="text-weight-bold">Razvan Stoenescu</div>
-            <div>@rstoenescu</div>
+            <div class="text-weight-bold">{{usuario.name}}</div>
+            <div>{{usuario.email}}</div>
           </div>
       </q-img>
 
@@ -111,12 +111,34 @@ export default {
   data () {
     return {
       left: false,
-      tab:'one'
+      tab:'one',
+      usuario:null
+    }
+  },
+  created(){
+    let user = sessionStorage.getItem('usuario');
+    if (user) {
+      this.usuario = JSON.parse(user);
     }
   },
   methods:{
     chat(){
       alert('em construção');
+    },
+    sair(){
+      
+      this.$q.dialog({
+        title: 'Encerrar Sessão',
+        message: 'Deseja realmente sair do APP?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        sessionStorage.clear();
+        this.$router.push("/")
+      }).onCancel(() => {
+        console.log('>>>> Cancel')
+      })
+
     }
   }
 }

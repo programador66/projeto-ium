@@ -86,7 +86,7 @@
 <script>
 import imagem from '../img/user.png';
 import MyLayout from '../layouts/MyLayout';
-import firebase from 'firebase';
+
 export default {
   name: 'Login',
   data () {
@@ -116,9 +116,59 @@ export default {
       foto.style.transitionDelay = "0.1s";
       foto.style.transitionDuration = "3s";
       foto.style.transform = 'scale(1.3)';
-      setTimeout(() => {
-        this.$router.push('/index');
-      },2000);
+      
+
+      this.$axios.post('http://projeto-ium/api/cliente/login',{
+       email: this.email,
+       password:this.senha
+       })
+      .then(response => {
+        console.log(response);
+        if (response.data.validate){
+          const msg = 
+          response.data.validate ? response.data.data.email ? response.data.data.email[0] : "" + " "
+          +response.data.data.password ? response.data.data.password[0] : "" : null;
+
+          this.$q.notify({
+          color: 'red',                                                      
+          timeout: 1500,
+          textColor: 'white',
+          message: msg || 'verificar campos inválidos!',
+          actions: [{ icon: 'close', color: 'blue' }]
+          })
+
+          this.mostrarProgress = false;
+
+        } else if (response.data.success){
+          sessionStorage.setItem('usuario',JSON.stringify(response.data.data));
+          setTimeout(() => {
+            this.$router.push('/index');
+          },2000);
+
+        } else {
+         
+          let res = response.data.message;
+
+          this.$q.notify({
+          color: 'red',                                                      
+          timeout: 1500,
+          textColor: 'white',
+          message: res,
+          actions: [{ icon: 'close', color: 'blue' }]
+          })
+
+          setTimeout(() => {
+            this.mostrarProgress = false;
+          },2000);
+
+        }
+        
+
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    
 
     },
     CriarNovoUsuario(){
@@ -143,23 +193,7 @@ export default {
 
     },
     facebook(){
-      var provider = new firebase.auth.FacebookAuthProvider();
-      firebase.auth().signInWithPopup(provider).then(function(result) {
-    
-          var token = result.credential.accessToken;
-          // The signed-in user info.
-          var user = result.user;
-          // ...
-        }).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-          // ...
-        });
+   
     }
   }
 }
