@@ -21,11 +21,13 @@
         <q-form
           class="q-gutter-md"
           color="white"
+          ref="formLogin"
         >
           <q-input
             v-show="novoUsuario"
             color="white"
             filled
+            ref="nome"
             v-model="nome"
             label="Nome"
             lazy-rules
@@ -33,6 +35,7 @@
             :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
           />
           <q-input
+            ref="email"
             color="white"
             filled
             v-model="email"
@@ -44,6 +47,7 @@
       
           <q-input
             filled
+            ref="password"
             color="white"
             v-model="senha"
             label="Senha"
@@ -73,6 +77,7 @@
           <div v-else>
             <q-input
             filled
+            ref="newPassword"
             color="white"
             v-model="novaSenha"
             label="Confirmar Senha"
@@ -85,7 +90,7 @@
             />
            
             <div id="btnCadastrar">
-              <span><q-btn label="Cancelar" @click="novoUsuario=false" text-color="blue" color="white"/></span>
+              <span><q-btn label="Cancelar" @click="cancelaCadastro()" text-color="blue" color="white"/></span>
               <span style="margin-left:8px"><q-btn label="Cadastrar" @click="CriarNovoUsuario" text-color="blue" color="white"/></span>
             </div>
 
@@ -115,16 +120,32 @@ export default {
     }
   },
    methods: {
-    onReset () {
-      this.usuario = null
-      this.senha = null
-      this.accept = false
+     cancelaCadastro(){
+       this.onReset();
+       this.novoUsuario = false;
+
+     },
+    onReset(){
+      this.nome = null;
+      this.email = null;
+      this.senha = null;
+      this.novaSenha = null;
+
+      this.$refs.formLogin.resetValidation();
+     
     },
     criarNovaConta(){  
         this.novoUsuario = true;
+        this.onReset();
     },
     entrar(){
-  
+       this.$refs.email.validate();
+       this.$refs.password.validate();
+
+       if (this.$refs.email.hasError || this.$refs.password.hasError) { 
+          return this.formHasError = true;
+       }
+
       this.mostrarProgress = true;
       let foto = document.getElementById("foto");
       foto.style.transitionDelay = "0.1s";
@@ -137,7 +158,7 @@ export default {
        password:this.senha
        })
       .then(response => {
-        console.log(response);
+       
         if (response.data.validate){
           const msg = 
           response.data.validate ? response.data.data.email ? response.data.data.email[0] : "" + " "
@@ -189,6 +210,15 @@ export default {
 
     },
     CriarNovoUsuario(){
+
+       this.$refs.email.validate();
+       this.$refs.password.validate();
+       this.$refs.nome.validate();
+       this.$refs.newPassword.validate();
+
+      if (this.$refs.email.hasError || this.$refs.password.hasError || this.$refs.nome.hasError || this.$refs.newPassword.hasError) { 
+          return this.formHasError = true;
+      }
 
       this.mostrarProgress = true;
       let foto = document.getElementById("foto");
@@ -243,6 +273,14 @@ export default {
     },
     facebook(){
    
+    },
+    watch(){
+      // novaSenha(val){
+      //   let novaSenha = val;
+      //   if (novaSenha === this.senha) {
+          
+      //   }
+      // }
     }
   }
 }
