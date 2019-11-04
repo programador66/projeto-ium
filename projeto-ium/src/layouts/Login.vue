@@ -151,6 +151,9 @@ export default {
           actions: [{ icon: 'close', color: 'blue' }]
           })
 
+          foto.style.transitionDelay = "0.1s";
+          foto.style.transitionDuration = "3s";
+          foto.style.transform = 'scale(0.9)';
           this.mostrarProgress = false;
 
         } else if (response.data.success){
@@ -227,6 +230,9 @@ export default {
             })  
 
             setTimeout(() => {
+              foto.style.transitionDelay = "0.1s";
+              foto.style.transitionDuration = "3s";
+              foto.style.transform = 'scale(0.9)';
               this.mostrarProgress = false;
             },2000);
           } 
