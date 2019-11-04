@@ -32,7 +32,7 @@
             label="Nome"
             lazy-rules
             dark
-            :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
+            :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
           />
           <q-input
             ref="email"
@@ -42,7 +42,7 @@
             label="E-mail"
             lazy-rules
             dark
-            :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
+            :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
           />
       
           <q-input
@@ -55,7 +55,7 @@
             lazy-rules
             type="password"
             :rules="[
-              val => val !== null && val !== '' || 'Campo não pode ser nullo'
+              val => val !== null && val !== '' || 'Campo obrigatório'
             ]"
           />
 
@@ -85,7 +85,7 @@
             lazy-rules
             type="password"
             :rules="[
-              val => val !== null && val !== '' || 'Campo não pode ser nullo'
+              val => val !== null && val !== '' || 'Campo obrigatório'
             ]"
             />
            
