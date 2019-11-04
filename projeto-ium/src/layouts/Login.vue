@@ -23,6 +23,16 @@
           color="white"
         >
           <q-input
+            v-show="novoUsuario"
+            color="white"
+            filled
+            v-model="nome"
+            label="Nome"
+            lazy-rules
+            dark
+            :rules="[ val => val && val.length > 0 || 'Campo não pode ser nulo']"
+          />
+          <q-input
             color="white"
             filled
             v-model="email"
@@ -73,9 +83,12 @@
               val => val !== null && val !== '' || 'Campo não pode ser nullo'
             ]"
             />
+           
             <div id="btnCadastrar">
-              <q-btn label="Cadastrar" @click="CriarNovoUsuario" text-color="blue" color="white"/>
+              <span><q-btn label="Cancelar" @click="novoUsuario=false" text-color="blue" color="white"/></span>
+              <span style="margin-left:8px"><q-btn label="Cadastrar" @click="CriarNovoUsuario" text-color="blue" color="white"/></span>
             </div>
+
           </div> 
         </q-form>
       </div>
@@ -91,6 +104,7 @@ export default {
   name: 'Login',
   data () {
     return {
+      nome:null,
       email: null,
       senha: null,
       novaSenha:null,
@@ -214,7 +228,7 @@ export default {
   background-color:#1E88E5;
 }
 #foto{
-  margin:20% 28%;
+  margin:10% 28%;
 }
 
 #ntc{
@@ -231,7 +245,9 @@ export default {
 }
 
 #btnCadastrar{
-   margin:10% 35%;
+  display: inline-block;
+  margin-left: 18%;
+  margin-top: 4%;
 }
 
 #face{
@@ -263,7 +279,7 @@ export default {
 }
 #ntc{
   color:white;
-  margin:5% 10%;
+  margin:5% 5%;
 }
 
 
