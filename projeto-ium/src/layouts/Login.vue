@@ -121,8 +121,8 @@ export default {
   },
    methods: {
      cancelaCadastro(){
-       this.onReset();
-       this.novoUsuario = false;
+      this.onReset();
+      this.novoUsuario = false;
 
      },
     onReset(){
@@ -233,7 +233,6 @@ export default {
         password_confirmation:this.novaSenha
         }
         ).then(response => {
-          console.log(response.data);
           
           if (response.data.success) {
             const msg = response.data.message;
@@ -246,7 +245,12 @@ export default {
             
             })
             setTimeout(() => {
-              window.location.reload();
+              sessionStorage.setItem('usuario',JSON.stringify(response.data.data));
+              
+              setTimeout(() => {
+                this.$router.push('/index');
+              },2000);
+
             },2000);
           } else {
 

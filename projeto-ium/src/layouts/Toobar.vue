@@ -119,6 +119,8 @@ export default {
     let user = sessionStorage.getItem('usuario');
     if (user) {
       this.usuario = JSON.parse(user);
+    } else {
+      this.$router.push("/login")
     }
   },
   methods:{
