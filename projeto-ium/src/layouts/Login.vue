@@ -271,7 +271,15 @@ export default {
             },2000);
           } 
          
-        })
+        }).catch (e => {
+          this.$q.notify({
+            color: 'red',                                                      
+            timeout: 1500,
+            textColor: 'white',
+            message: 'Verifique sua conexão',
+            actions: [{ icon: 'close', color: 'white' }]
+            }) 
+        });
       
 
     },
