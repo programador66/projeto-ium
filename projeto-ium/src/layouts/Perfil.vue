@@ -7,7 +7,11 @@
             <div id="title2">Crie um agora e tenha mais chances em novas oportunidades</div>
         </q-card-section>
           <q-card-section >
-            <div style="text-align:center;margin-top:10%;"><q-btn color="primary">Cadastrar</q-btn></div>
+            <div style="text-align:center;margin-top:10%;">
+              <q-btn color="primary" 
+              @click="perfil()">
+              Cadastrar
+              </q-btn></div>
           </q-card-section>
           
     </q-card>
@@ -20,6 +24,12 @@ export default {
    data () {
     return {
      lorem:'lorem ispun jiamso nnjjaum join th amalum'
+    }
+  },
+
+  methods: {
+    perfil(){
+      this.$router.push("/perfil-curriculo");
     }
   }
    

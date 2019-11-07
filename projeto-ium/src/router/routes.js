@@ -25,6 +25,10 @@ const routes = [
   {
     path: '/login',
     component: () => import('pages/login')
+  },
+  {
+    path: '/perfil-curriculo',
+    component: () => import('pages/Perfil-Curriculo')
   }
 ]
 
