@@ -74,6 +74,9 @@ module.exports = function (ctx) {
         'QPageSticky',
         'QCircularProgress',
         'QTooltip',
+        'QStepperNavigation',
+        'QStepper',
+        'QStep'
       ],
 
       directives: [

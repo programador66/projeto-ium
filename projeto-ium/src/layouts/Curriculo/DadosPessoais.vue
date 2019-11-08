@@ -16,11 +16,54 @@
 
   
     <div id="passos">
-       <q-card class="my-card">
-      <q-card-section>
-        testetstetetetettasdasdasdasd asd asdasd a 
-      </q-card-section>
-    </q-card>
+       <!-- <q-card class="my-card" style="height:500px;">
+        <q-card-section> -->
+          <q-stepper
+                v-model="step"
+                ref="stepper"
+                contracted
+                color="primary"
+                animated
+              >
+                <q-step
+                  :name="1"
+                  title="Select campaign settings"
+                  icon="settings"
+                  :done="step > 1"
+                >
+                 <perfil @stepper="proximo" />
+
+                </q-step>
+
+                <q-step
+                  :name="2"
+                  title="Create an ad group"
+                  caption="Optional"
+                  icon="create_new_folder"
+                  :done="step > 2"
+                >
+                  An ad group contains one or more ads which target a shared set of keywords.
+                </q-step>
+
+                <q-step
+                  :name="3"
+                  title="Create an ad"
+                  icon="add_comment"
+                >
+                  Try out different ad text to see what brings in the most customers, and learn how to
+                  enhance your ads using features like ad extensions. If you run into any problems with
+                  your ads, find out how to tell if they're running and how to resolve approval issues.
+                </q-step>
+
+                <template v-slot:navigation>
+                  <q-stepper-navigation>
+                    <q-btn @click="$refs.stepper.next()" color="primary" :label="step === 3 ? 'Finish' : 'Continue'" />
+                    <q-btn v-if="step > 1" flat color="primary" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm" />
+                  </q-stepper-navigation>
+                </template>
+              </q-stepper>
+        <!-- </q-card-section>
+    </q-card> -->
     </div>
 
   </q-layout>
@@ -28,16 +71,22 @@
 
 <script>
 
+import  perfil from "../Curriculo/Perfil";
 
 export default {
+  components:{
+    perfil
+  },
   name: 'DadosPessoais',
   data () {
     return {
-     
+     step: 1
     }
   },
    methods: {
-    
+    proximo(val){
+      this.step = val;
+    }
   }
 }
 </script>
@@ -45,7 +94,6 @@ export default {
 <style scoped>
 #passos{
   margin-top: 13%;
-  height: 50px;
 }
 
 @media only screen and (max-width:320px) {
