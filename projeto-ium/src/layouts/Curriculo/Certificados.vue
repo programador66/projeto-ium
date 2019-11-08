@@ -64,6 +64,12 @@
 
       </q-card-section>
 
+      <q-card-section style="margin-top:5%;">
+        <q-item-section>
+          <q-btn @click="perfil()" color="primary"  label="Proximo" />
+        </q-item-section> 
+      </q-card-section>
+
     </q-card>   
                
   </div>
@@ -85,7 +91,7 @@ export default {
   },
    methods: {
     perfil(){
-      this.$emit('stepper',2);
+      this.$emit('stepper',5);
     }
   }
 }

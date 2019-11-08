@@ -1,7 +1,7 @@
 <template>
    <div>
 
-    <q-card class="" style="height:450px;width:105%;margin-left:-2.5%;">
+    <q-card class="" style="width:105%;margin-left:-2.5%;">
       <q-card-section> 
         <q-item-section>
           <q-item-label >
@@ -43,10 +43,13 @@
         </q-item-section>
 
       </q-card-section>  
-    
-    </q-card>   
 
-    <!-- <q-btn @click="perfil()" color="primary"  label="Proximo" /> -->
+      <q-card-section style="margin-top:5%;">
+        <q-item-section>
+          <q-btn @click="perfil()" color="primary"  label="Proximo" />
+        </q-item-section> 
+      </q-card-section> 
+    </q-card>   
                   
   </div>
 </template>
