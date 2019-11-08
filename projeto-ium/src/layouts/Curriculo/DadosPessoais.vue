@@ -39,7 +39,7 @@
                   :name="2"
                   title="Create an ad group"
                   caption="Optional"
-                  icon="create_new_folder"
+                  icon="add_comment"
                   :done="step > 2"
                 >
                 <educacao/>
@@ -49,16 +49,23 @@
                 <q-step
                   :name="3"
                   title="Create an ad"
+                  icon="create_new_folder"
+                  :done="step > 3"
+                >
+                  <experienciaProfissional/>
+                </q-step>
+
+                <q-step
+                  :name="4"
+                  title="Create an ad"
                   icon="add_comment"
                 >
-                  Try out different ad text to see what brings in the most customers, and learn how to
-                  enhance your ads using features like ad extensions. If you run into any problems with
-                  your ads, find out how to tell if they're running and how to resolve approval issues.
+                  <certificado/>
                 </q-step>
 
                 <template v-slot:navigation>
                   <q-stepper-navigation>
-                    <q-btn @click="$refs.stepper.next()" color="primary" :label="step === 3 ? 'Finish' : 'Continue'" />
+                    <q-btn @click="$refs.stepper.next()" color="primary" :label="step === 4 ? 'Finish' : 'Continue'" />
                     <q-btn v-if="step > 1" flat color="primary" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm" />
                   </q-stepper-navigation>
                 </template>
@@ -72,12 +79,14 @@
 
 <script>
 
-import  perfil from "../Curriculo/Perfil";
+import perfil from "../Curriculo/Perfil";
 import educacao from "../Curriculo/Educacao";
+import experienciaProfissional  from "../Curriculo/ExperienciaProfissional";
+import certificado from "../Curriculo/Certificados";
 
 export default {
   components:{
-    perfil,educacao
+    perfil,educacao,experienciaProfissional,certificado
   },
   name: 'DadosPessoais',
   data () {

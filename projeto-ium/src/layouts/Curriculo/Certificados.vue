@@ -5,7 +5,7 @@
       <q-card-section> 
         <q-item-section>
           <q-item-label >
-            <a class="title">Educação</a>
+            <a class="title">Prêmio e Certificações</a>
           </q-item-label> 
 
             <template v-if="existeEducacao">
@@ -23,35 +23,23 @@
             </template>
 
           <q-item-label style="margin-top:2%;">
-            <q-input v-model="curso" label="Curso"  />
+            <q-input v-model="premio" label="Prêmio ou Certificado"  />
           </q-item-label>
 
           <q-item-label>
-            <q-input v-model="instituicao" label="Instituição"  />
+            <q-input v-model="emissor" label="Emissor"  />
           </q-item-label> 
 
           
           <q-item-label>
             <div>
               <span style="float:left">
-              <q-input v-model="inicio" 
-              label="Inicio" 
+              <q-input v-model="data" 
+              label="Data" 
               style="max-width:150px"
               mask="##/##/####"
               hint="ex: 00/00/0000"
               > 
-                <template v-slot:append>
-                  <q-icon name="event" />
-                </template>
-              </q-input>
-              </span>
-              <span style="float:right">
-              <q-input v-model="conclusao"
-              label="Conclusao"
-              style="max-width:150px;"
-              mask="##/##/####"
-              hint="ex: 00/00/0000"
-              >
                 <template v-slot:append>
                   <q-icon name="event" />
                 </template>
@@ -71,7 +59,7 @@
             icon="add"
             @click="existeEducacao=!existeEducacao"  
           />
-          <a style="margin-left:2%;opacity: 0.6;">Adicionar Formação</a>
+          <a style="margin-left:2%;opacity: 0.6;">Adicionar Experiência</a>
         </q-item-label> 
 
       </q-card-section>
@@ -85,14 +73,13 @@
 
 
 export default {
-  name: 'Educacao',
+  name: 'Certificados',
   data () {
     return {
      objEducacao:[{"titulo":"Sistemas de Informação","instituicao":"FUCAPI","conclusao":2016}], 
-     curso:null,
-     instituicao:null,
-     inicio:null,
-     conclusao:null,
+     premio:null,
+     emissor:null,
+     data:null,
      existeEducacao:false
     }
   },
