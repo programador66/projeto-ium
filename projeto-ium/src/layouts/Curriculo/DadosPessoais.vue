@@ -3,10 +3,10 @@
 
     <div class="row">
       <q-header elevated class="bg-primary text-white" height-hint="98">
-      <q-toolbar class="bg-primary text-white">
+      <q-toolbar class="bg-primary text-white" style="height:55px;">
       <q-btn flat round dense icon="keyboard_backspace" class="q-mr-sm"  />
       
-      <q-toolbar-title>Criar Perfil</q-toolbar-title>
+      <q-toolbar-title >Criar Perfil</q-toolbar-title>
 
       <q-btn flat label="concluir"/>
     </q-toolbar>
@@ -42,7 +42,8 @@
                   icon="create_new_folder"
                   :done="step > 2"
                 >
-                  An ad group contains one or more ads which target a shared set of keywords.
+                <educacao/>
+
                 </q-step>
 
                 <q-step
@@ -72,10 +73,11 @@
 <script>
 
 import  perfil from "../Curriculo/Perfil";
+import educacao from "../Curriculo/Educacao";
 
 export default {
   components:{
-    perfil
+    perfil,educacao
   },
   name: 'DadosPessoais',
   data () {
@@ -93,7 +95,7 @@ export default {
 
 <style scoped>
 #passos{
-  margin-top: 13%;
+  margin-top: 14%;
 }
 
 @media only screen and (max-width:320px) {

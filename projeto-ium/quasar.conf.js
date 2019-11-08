@@ -76,7 +76,8 @@ module.exports = function (ctx) {
         'QTooltip',
         'QStepperNavigation',
         'QStepper',
-        'QStep'
+        'QStep',
+        'QOptionGroup'
       ],
 
       directives: [
