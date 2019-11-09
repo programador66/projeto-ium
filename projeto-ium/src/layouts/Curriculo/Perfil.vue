@@ -69,7 +69,7 @@ export default {
      group: null,
       options: [
         { label: 'Masculino', value: 'M' },
-        { label: 'Feminino', value: 'F', color: 'red' }
+        { label: 'Feminino', value: 'F', color: 'pink' }
       ]
     }
   },
