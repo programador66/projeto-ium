@@ -104,6 +104,7 @@
 <script>
 import imagem from '../img/user.png';
 import MyLayout from '../layouts/MyLayout';
+import API from "../api/api";
 
 export default {
   name: 'Login',
@@ -153,7 +154,7 @@ export default {
       foto.style.transform = 'scale(1.3)';
       
 
-      this.$axios.post('http://projeto-ium/api/cliente/login',{
+       new API().api.post('cliente/login',{
        email: this.email,
        password:this.senha
        })
@@ -226,7 +227,7 @@ export default {
       foto.style.transitionDuration = "3s";
       foto.style.transform = 'scale(1.3)';
 
-      this.$axios.post('http://projeto-ium/api/cliente/cadastro',{
+      new API().api.post('http://projeto-ium/api/cliente/cadastro',{
         name:this.nome,
         email:this.email,
         password:this.senha,

@@ -122,9 +122,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar App',
-        // description: 'projeto facudlade',
+        name: 'Job for Students',
+        short_name: 'JFS APP',
+        description: 'projeto faculdade',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
