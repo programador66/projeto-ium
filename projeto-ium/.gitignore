@@ -7,6 +7,8 @@ node_modules
 /src-cordova/platforms
 /src-cordova/plugins
 /src-cordova/www
+build.cordova.json
+quasar-release-keys.jks
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -227,7 +227,7 @@ export default {
       foto.style.transitionDuration = "3s";
       foto.style.transform = 'scale(1.3)';
 
-      new API().api.post('http://projeto-ium/api/cliente/cadastro',{
+      new API().api.post('cliente/cadastro',{
         name:this.nome,
         email:this.email,
         password:this.senha,
@@ -314,7 +314,7 @@ export default {
   background-color:#1E88E5;
 }
 #foto{
-  margin:10% 28%;
+  margin:10% 30%;
 }
 
 #ntc{
@@ -341,6 +341,7 @@ export default {
   height: 32px;
   background-image:url('../img/Image 2.png');
   background-size: 105%;
+  margin-left: 2.4%;
 }
 
 #google{
@@ -350,12 +351,13 @@ export default {
   background-size: 102%;
 }
 
-@media only screen and (max-width:320px) {
+@media only screen and (max-width:360px) {
   #face{
   width: 130px;
   height: 32px;
   background-size: 103%; 
-  margin-right: 2%;
+  margin-right: 3%;
+  margin-left: 4%;
 }
 
 #google{
@@ -365,7 +367,7 @@ export default {
 }
 #ntc{
   color:white;
-  margin:5% 5%;
+  margin:5% 14%;
 }
 
 
