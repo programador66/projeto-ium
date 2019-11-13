@@ -1,6 +1,6 @@
 <template>
   <q-layout id="login">
-     <div class="q-pa-md" style="max-width: 400px">
+     <div class="q-pa-sm q-ml-md q-mr-md" style="max-width: 400px">
         <div id="foto">
              <q-img
               :src="url"
@@ -22,7 +22,7 @@
           class="q-gutter-md"
           color="white"
           ref="formLogin"
-        >
+        > 
           <q-input
             v-show="novoUsuario"
             color="white"
@@ -40,6 +40,7 @@
             filled
             v-model="email"
             label="E-mail"
+            type="email"
             lazy-rules
             dark
             :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
@@ -279,7 +280,7 @@ export default {
             textColor: 'white',
             message: 'Verifique sua conexão',
             actions: [{ icon: 'close', color: 'white' }]
-            }) 
+          }) 
         });
       
 
@@ -319,7 +320,7 @@ export default {
 
 #ntc{
   color:white;
-  margin:5% 16%;
+  margin:5% 14%;
 }
 
 #opEntrada{
@@ -338,10 +339,9 @@ export default {
 
 #face{
   width: 160px;
-  height: 32px;
+  height: 26px;
   background-image:url('../img/Image 2.png');
-  background-size: 105%;
-  margin-left: 2.4%;
+  background-size: 104%;
 }
 
 #google{
@@ -349,6 +349,8 @@ export default {
   height: 38px;
   background-image:url('../img/google.png');
   background-size: 102%;
+  margin-left: 0%;
+
 }
 
 @media only screen and (max-width:360px) {
@@ -375,4 +377,63 @@ export default {
   margin:12% 28%;
 }
 }
+
+@media only screen and (min-width:400px) {
+  #google{
+    width: 160px;
+    height: 38px;
+    background-image:url('../img/google.png');
+    background-size: 102%;
+    
+
+  }
+
+  #face{
+    width: 160px;
+    height: 20px;
+    margin-right: 3%;
+    margin-left: 4%;
+  }
+
+  #ntc{
+    color:white;
+    margin:5% 16%;
+  }
+}
+
+@media only screen and (max-width:320px) {
+  #face{
+  width: 130px;
+  height: 32px;
+  background-size: 103%; 
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
+#google{
+  width: 130px;
+  height: 38px;
+  background-size: 100%; 
+}
+#ntc{
+  color:white;
+  margin:5% 7%;
+}
+
+
+#foto{
+  margin:12% 28%;
+}
+
+#btnEntrar{
+   margin:10% 38%;
+}
+
+#btnCadastrar{
+  display: inline-block;
+  margin-left: 10%;
+  margin-top: 4%;
+}
+}
+
 </style>
