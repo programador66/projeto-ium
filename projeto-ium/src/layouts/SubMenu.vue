@@ -1,21 +1,16 @@
 <template>
   
-  <div  >
-      <!-- <q-tabs align="left">
-        <q-route-tab to="/page1" label="Page One" />
-        <q-route-tab to="/page2" label="Page Two" />
-        <q-route-tab to="/page3" label="Page Three" />
-
-      </q-tabs> -->
-       <q-tabs v-model="tab" class="text-teal" >
-        <q-tab label="vagas" class="text" name="one" />
-        <q-tab label="Seleções" class="text" name="two" />
-        <q-tab label="Perfil" class="text" name="three" />
-      </q-tabs>
+  <div>
+ 
+    <q-tabs v-model="tab" class="text-teal" >
+    <q-tab label="vagas" class="text" name="one" />
+    <q-tab label="Seleções" class="text" name="two" />
+    <q-tab label="Perfil" class="text" name="three" />
+    </q-tabs>
 
       <q-separator />
       
-      <q-tab-panels v-model="tab" animated>
+      <q-tab-panels v-model="tab" animated swipeable infinite>
         <q-tab-panel name="one">
           <vagas/>
         </q-tab-panel>

@@ -6,7 +6,7 @@
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
         <q-toolbar-title>
-          <a style="margin-top:2%;">IUM-Project</a>
+          <a style="margin-top:2%;">Jobs for Students</a>
         </q-toolbar-title>
           <q-avatar name="mails" icon="mail" label="Mails" style="float:right;margin-top:1%;" @click="chat">
             <q-badge color="red" floating>2</q-badge>

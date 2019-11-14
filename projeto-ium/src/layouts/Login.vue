@@ -33,7 +33,12 @@
             lazy-rules
             dark
             :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
-          />
+          >
+             <template v-slot:append>
+             <q-icon name="person" />
+            </template>
+          </q-input>
+
           <q-input
             ref="email"
             color="white"
@@ -44,7 +49,11 @@
             lazy-rules
             dark
             :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
-          />
+          >
+            <template v-slot:append>
+             <q-icon name="mail" />
+            </template>
+          </q-input>
       
           <q-input
             filled
@@ -58,21 +67,23 @@
             :rules="[
               val => val !== null && val !== '' || 'Campo obrigatório'
             ]"
-          />
+          >
+            <template v-slot:append>
+              <q-icon name="lock"/>
+            </template>
+          </q-input>
 
           <div v-if="!novoUsuario">
-              <div id="ntc">
-                <a style="text-decoration:underline white" @click="criarNovaConta">
-                  Não tem conta? Crie uma nova conta
-                </a>
-              </div>
-                <div id="opEntrada"> 
-                  <span> <q-btn  id="face" @click="facebook" /></span>
-                  <span> <q-btn id="google" /></span>
-                </div>
-                <div id="btnEntrar">
-                    <q-btn label="Entrar" @click="entrar" text-color="blue" color="white"/>
-                </div>
+              
+             <span id="recuperar-senha"> Esqueci minha senha </span>   
+            <div style="margin-top:8%;">
+                <q-btn label="Login" style="width: 100%;height:50px;" @click="entrar" outline  text-color="white"/>
+            </div>
+
+            <div id="ntc" style="margin-top:5%;">
+              <q-btn label="Criar uma conta" style="width: 100%;background-color:#ff3333;" @click="criarNovaConta" outline text-color="white" color=""/>
+            </div>
+
           </div>
 
           <div v-else>
@@ -88,7 +99,11 @@
             :rules="[
               val => val !== null && val !== '' || 'Campo obrigatório'
             ]"
-            />
+            >
+           <template v-slot:append>
+              <q-icon name="lock"/>
+            </template>
+          </q-input>
            
             <div id="btnCadastrar">
               <span><q-btn label="Cancelar" @click="cancelaCadastro()" text-color="blue" color="white"/></span>
@@ -171,7 +186,7 @@ export default {
           timeout: 1500,
           textColor: 'white',
           message: msg || 'verificar campos inválidos!',
-          actions: [{ icon: 'close', color: 'blue' }]
+          actions: [{ icon: 'close', color: 'white' }]
           })
 
           foto.style.transitionDelay = "0.1s";
@@ -243,7 +258,7 @@ export default {
               timeout: 1500,
               textColor: 'blue',
               message: msg,
-              actions: [{ icon: 'close', color: 'blue' }]
+              actions: [{ icon: 'close', color: 'white' }]
             
             })
             setTimeout(() => {
@@ -302,11 +317,9 @@ export default {
 
 <style scoped>
 
-.grow
-{
-  -webkit-transform: scale(1.3);
-  -ms-transform: scale(1.3);
-  transform: scale(1.3);
+#recuperar-senha{
+  color:#fff;
+  margin-left:30%;
 }
 #progress {
   margin:20% 38%;
@@ -315,12 +328,12 @@ export default {
   background-color:#1E88E5;
 }
 #foto{
-  margin:10% 30%;
+  margin:14% 30%;
 }
 
 #ntc{
   color:white;
-  margin:5% 14%;
+  margin:7% 14%;
 }
 
 #opEntrada{
@@ -337,36 +350,10 @@ export default {
   margin-top: 4%;
 }
 
-#face{
-  width: 160px;
-  height: 26px;
-  background-image:url('../img/Image 2.png');
-  background-size: 104%;
-}
 
-#google{
-  width: 160px;
-  height: 38px;
-  background-image:url('../img/google.png');
-  background-size: 102%;
-  margin-left: 0%;
-
-}
 
 @media only screen and (max-width:360px) {
-  #face{
-  width: 130px;
-  height: 32px;
-  background-size: 103%; 
-  margin-right: 3%;
-  margin-left: 4%;
-}
 
-#google{
-  width: 130px;
-  height: 38px;
-  background-size: 100%; 
-}
 #ntc{
   color:white;
   margin:5% 14%;
@@ -379,47 +366,24 @@ export default {
 }
 
 @media only screen and (min-width:400px) {
-  #google{
-    width: 160px;
-    height: 38px;
-    background-image:url('../img/google.png');
-    background-size: 102%;
-    
-
-  }
-
-  #face{
-    width: 160px;
-    height: 20px;
-    margin-right: 3%;
-    margin-left: 4%;
-  }
 
   #ntc{
     color:white;
-    margin:5% 16%;
+    margin:9% 16%;
   }
 }
 
 @media only screen and (max-width:320px) {
-  #face{
-  width: 130px;
-  height: 32px;
-  background-size: 103%; 
-  margin-right: 1%;
-  margin-left: 1%;
-}
 
-#google{
-  width: 130px;
-  height: 38px;
-  background-size: 100%; 
-}
 #ntc{
   color:white;
   margin:5% 7%;
 }
 
+#recuperar-senha{
+  color:#fff;
+  margin-left:27%;
+}
 
 #foto{
   margin:12% 28%;
