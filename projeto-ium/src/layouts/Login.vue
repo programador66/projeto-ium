@@ -119,7 +119,6 @@
 
 <script>
 import imagem from '../img/user.png';
-import MyLayout from '../layouts/MyLayout';
 import API from "../api/api";
 
 export default {

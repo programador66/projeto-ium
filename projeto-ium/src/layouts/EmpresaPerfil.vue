@@ -48,7 +48,6 @@
 
 <script>
 import imagem from '../img/user.png';
-import MyLayout from '../layouts/MyLayout';
 
 export default {
   name: 'Login',

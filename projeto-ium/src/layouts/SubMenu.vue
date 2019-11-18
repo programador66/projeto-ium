@@ -19,9 +19,14 @@
            <selecoes/>
         </q-tab-panel>
 
-        <q-tab-panel name="three" id="perfil">
+        <q-tab-panel v-if="!existePerfil" name="three" id="perfil">
            <perfil/>
         </q-tab-panel>
+
+        <q-tab-panel v-else="" name="three" id="p-completo">
+          <perfil-completo/>
+        </q-tab-panel>
+
       </q-tab-panels>
     
     <q-page-container>
@@ -34,15 +39,17 @@
 import vagas from '../layouts/Vagas';
 import selecoes from '../layouts/Selecoes';
 import perfil from '../layouts/Perfil';
+import perfilCompleto from '../layouts/PerfilCompleto';
 
 export default {
   components:{
-    vagas,selecoes,perfil
+    vagas,selecoes,perfil,perfilCompleto
   },
   data () {
     return {
       left: false,
-      tab:'one'
+      tab:'one',
+      existePerfil:true,
     }
   }
 }
@@ -55,6 +62,11 @@ export default {
   }
   #perfil{
     background-image: url("../img/ilustracao.png");
+    background-color: white;
+    height: 800px;
+  }
+
+  #p-completo{
     background-color: white;
     height: 800px;
   }
