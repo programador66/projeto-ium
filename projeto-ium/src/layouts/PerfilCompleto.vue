@@ -41,7 +41,7 @@
     </q-card>
 
      <q-page-sticky position="bottom-right" :offset="[18, 18]">
-        <q-btn fab icon="add" color="blue" />
+        <q-btn fab icon="edit" color="blue" />
       </q-page-sticky>
   </div>   
 </template>
