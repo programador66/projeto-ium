@@ -4,7 +4,7 @@
     <div class="row">
       <q-header elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar class="bg-primary text-white" style="height:55px;">
-      <q-btn flat round dense icon="keyboard_backspace" class="q-mr-sm" @click="step > 1 ? $refs.stepper.previous(): $refs.stepper.next() " />
+      <q-btn flat round dense icon="keyboard_backspace" class="q-mr-sm" @click="step > 1 ? $refs.stepper.previous(): home() " />
       
       <q-toolbar-title >Criar Perfil</q-toolbar-title>
 
@@ -89,7 +89,11 @@ export default {
   },
    methods: {
     proximo(val){
-      this.step = val;
+      this.step = val != 5 ? val : 4;
+    },
+    home() {
+      this.$router.push('/index');
+      
     }
   }
 }
