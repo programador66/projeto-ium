@@ -17,7 +17,7 @@
                             label="CPF" 
                             mask="###.###.###-##"
                             hint="ex: 000.000.000-00"
-                            />
+                        />
                     </q-item-label>
 
                 </q-item-section>
@@ -30,14 +30,17 @@
                         <q-input 
                             v-model="endereco" 
                             label="Endereco"
-                            hint="rua, número, bairro"/>
+                            hint="rua, número, bairro"
+                        />
                     </q-item-label>
 
                     <q-item-label>
                         <q-input 
                             v-model="fone" 
                             label="Fone"
-                            mask="(##) ####-####"/>
+                            mask="(##) ####-####"
+                            hint="(00) 0000-0000"
+                        />
                     </q-item-label>
 
                     <q-item-label>
@@ -66,6 +69,7 @@
 
 <script>
 
+    import Candidato from "../../api/candidato";
 
     export default {
         name: 'DadosPessoais',
@@ -93,10 +97,20 @@
                 const candidato = {
                     cpf: this.cpf,
                     telefone:this.fone,
+                    endereco:this.endereco,
                     sexo:this.group,
                     user_id:JSON.parse(sessionStorage.getItem('usuario')).id
                 }
                 console.log(candidato);
+
+             Candidato.seCandidato(candidato)
+              .then(response => {
+                console.log(response);
+                  
+              })
+              .catch(e => {
+                  console.log(e)
+              })
             },
             perfil() {
                 this.$emit('stepper', 2);
