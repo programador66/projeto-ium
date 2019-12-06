@@ -23,11 +23,23 @@
             </template>
 
           <q-item-label style="margin-top:2%;">
-            <q-input v-model="curso" label="Curso"  />
+            <q-input 
+              v-model="curso" 
+              label="Curso"
+              ref="curso"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
+            />
           </q-item-label>
 
           <q-item-label>
-            <q-input v-model="instituicao" label="Instituição"  />
+            <q-input 
+              v-model="instituicao" 
+              label="Instituição"
+              ref="instituicao"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
+                />
           </q-item-label> 
 
           
@@ -39,6 +51,9 @@
               style="max-width:150px"
               mask="##/##/####"
               hint="ex: 00/00/0000"
+              ref="dtinicio"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
               > 
                 <template v-slot:append>
                   <q-icon name="event" />
@@ -51,6 +66,9 @@
               style="max-width:150px;"
               mask="##/##/####"
               hint="ex: 00/00/0000"
+              ref="dtconclusao"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
               >
                 <template v-slot:append>
                   <q-icon name="event" />
@@ -69,7 +87,7 @@
             round
             color="primary"
             icon="add"
-            @click="existeEducacao=!existeEducacao"  
+            @click="adicionarEducacao"  
           />
           <a style="margin-left:2%;opacity: 0.6;">Adicionar Formação</a>
         </q-item-label> 
@@ -78,7 +96,7 @@
 
        <q-card-section style="margin-top:5%;">
         <q-item-section>
-          <q-btn @click="perfil()" color="primary"  label="Proximo" />
+          <q-btn @click="cadastroEducacao()" color="primary"  label="Proximo" />
         </q-item-section> 
       </q-card-section>
     </q-card>   
@@ -103,7 +121,14 @@ export default {
   },
    methods: {
     perfil(){
-      this.$emit('stepper',3);
+
+      // this.$emit('stepper',3);
+    },
+    adicionarEducacao() {
+      this.$refs.curso.validate();
+      this.$refs.instituicao.validate();
+      this.$refs.dtinicio.validate();
+      this.$refs.dtconclusao.validate();
     }
   }
 }
