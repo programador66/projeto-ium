@@ -15,7 +15,7 @@
                     <span>{{edu.titulo}}</span>
                      <span style="float:right;color:#1E88E5;font-weight:bold;">
                       {{edu.conclusao}}
-                      <span ><q-btn flat round icon="delete"/></span>
+                      <span ><q-btn flat round icon="delete" @click="excluir(indice)"/></span>
                       </span>
                       
                   </q-item-label>
@@ -85,7 +85,7 @@
         </q-item-section>   
       </q-card-section> 
 
-      <q-card-section style="margin-top:4%;">
+      <q-card-section style="margin-top:4%;" v-show="this.objEducacao.length < 2">
         <q-item-label>
           <q-btn
             size="6px"
@@ -150,6 +150,12 @@ export default {
        this.objEducacao.push(educacao);
        console.log(this.objEducacao);
 
+    },
+    excluir(id) {
+      
+      this.objEducacao.splice(id,1);
+
+      console.log(this.objEducacao);
     }
   }
 }
