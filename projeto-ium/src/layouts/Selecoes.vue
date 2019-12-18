@@ -1,9 +1,8 @@
 <template>
+ <q-layout style="height: 400px">
   <div class="col-12">
-      <q-scroll-area
-        style="height: 600px; max-width: 400px;"
-        
-      >
+      <q-page-container>
+        <q-page padding> 
           <q-list bordered animated>
             <div v-for="c in 4" :key="c">
             <q-card class="my-card" style="margin-bottom:3%;">
@@ -35,9 +34,21 @@
             
            
             </div>
-          </q-list> 
-  </q-scroll-area>
-  </div>   
+          </q-list>
+            <div style="height:50px;">
+              <h1></h1>
+          </div>
+          <!-- place QPageScroller at end of page -->
+          <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[18, 18]">
+            <q-btn fab icon="keyboard_arrow_up" color="primary" />
+          </q-page-scroller>
+
+     </q-page>
+      </q-page-container>
+          
+ 
+    </div> 
+  </q-layout>   
 </template>
 
 <script>
