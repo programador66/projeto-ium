@@ -9,7 +9,7 @@
                 <q-item>
                     <q-item-section avatar>
                       <q-avatar >
-                        <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+                        <img :src="imagememp">
                       </q-avatar>
                     </q-item-section>
 
@@ -40,7 +40,7 @@
           </div>
           <!-- place QPageScroller at end of page -->
           <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[18, 18]">
-            <q-btn fab icon="keyboard_arrow_up" color="primary" />
+            <q-btn fab icon="keyboard_arrow_up" color="accent" />
           </q-page-scroller>
 
      </q-page>
@@ -52,10 +52,13 @@
 </template>
 
 <script>
+import imagememp from '../img/avatar2.jpg';
+
 export default {
    data () {
     return {
-     lorem:'lorem ispun jiamso nnjjaum join th amalum'
+     lorem:'lorem ispun jiamso nnjjaum join th amalum',
+     imagememp: imagememp
     }
   },
   methods:{
