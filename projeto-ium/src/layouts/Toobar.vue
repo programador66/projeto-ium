@@ -2,11 +2,11 @@
     <q-layout view="hHh lpR fFf">
 
         <q-header elevated class="bg-primary text-white" height-hint="98">
-            <q-toolbar>
+            <q-toolbar style="height:60px;">
                 <q-btn dense flat round icon="menu" @click="left = !left"/>
 
                 <q-toolbar-title>
-                    <a style="margin-top:2%;">Jobs for Students</a>
+                    <a style="margin-top:2%;">Aluno - Empresa</a>
                 </q-toolbar-title>
                 <q-avatar name="mails" icon="mail" label="Mails" style="float:right;margin-top:1%;" @click="chat">
                     <q-badge color="red" floating>2</q-badge>
@@ -89,7 +89,7 @@
             <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
                 <div class="absolute-bottom bg-transparent">
                     <q-avatar size="56px" class="q-mb-sm">
-                        <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+                        <img :src="imagememp">
                     </q-avatar>
                     <div class="text-weight-bold">{{usuario.name}}</div>
                     <div>{{usuario.email}}</div>
@@ -101,9 +101,8 @@
 </template>
 
 <script>
-
-    import subMenu from './SubMenu';
-
+import imagememp from '../img/avatar2.jpg';
+import subMenu from './SubMenu';
     export default {
         components: {
             subMenu
@@ -112,7 +111,8 @@
             return {
                 left: false,
                 tab: 'one',
-                usuario: null
+                usuario: null,
+                imagememp:imagememp
             }
         },
         created() {
