@@ -129,6 +129,7 @@ export default {
       this.$refs.instituicao.validate();
       this.$refs.dtinicio.validate();
       this.$refs.dtconclusao.validate();
+      
     }
   }
 }

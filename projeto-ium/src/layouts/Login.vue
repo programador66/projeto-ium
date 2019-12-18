@@ -170,7 +170,7 @@
                 let foto = document.getElementById("foto");
                 foto.style.transitionDelay = "0.1s";
                 foto.style.transitionDuration = "3s";
-                foto.style.transform = 'scale(1.3)';
+                foto.style.transform = 'scale(1.1)';
 
 
                 new API().api.post('cliente/login', {
@@ -217,6 +217,9 @@
 
                             setTimeout(() => {
                                 this.mostrarProgress = false;
+                                foto.style.transitionDelay = "0.1s";
+                                foto.style.transitionDuration = "3s";
+                                foto.style.transform = 'scale(0.9)';
                             }, 2000);
 
                         }
@@ -244,7 +247,7 @@
                 let foto = document.getElementById("foto");
                 foto.style.transitionDelay = "0.1s";
                 foto.style.transitionDuration = "3s";
-                foto.style.transform = 'scale(1.3)';
+                foto.style.transform = 'scale(1.1)';
 
                 new API().api.post('cliente/cadastro', {
                         name: this.nome,
@@ -299,6 +302,14 @@
                         message: 'Verifique sua conexão',
                         actions: [{icon: 'close', color: 'white'}]
                     })
+
+                    setTimeout(() => {
+                            foto.style.transitionDelay = "0.1s";
+                            foto.style.transitionDuration = "3s";
+                            foto.style.transform = 'scale(0.9)';
+                            this.mostrarProgress = false;
+                    }, 2000);
+                    
                 });
 
 
