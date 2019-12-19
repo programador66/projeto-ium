@@ -52,18 +52,23 @@
             <div>
               <span style="float:left">
                 <q-input filled 
-                  v-model="inicio" 
+                  v-model="inicio"
+                  maxlength="10" 
                   label="Inicio" 
                   style="max-width:148px"
                   ref="dtinicio"
+                  
                   lazy-rules
                   :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"    
                 > 
+                   <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
+                        <q-date v-model="clinicio" @input="() => $refs.qDateProxy1.hide()" />
+                   </q-popup-proxy>
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
-                      <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
+                      <!-- <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
                         <q-date v-model="clinicio" @input="() => $refs.qDateProxy1.hide()" />
-                      </q-popup-proxy>
+                      </q-popup-proxy> -->
                     </q-icon>
                   </template>
                 </q-input>
@@ -72,16 +77,20 @@
                 <q-input filled 
                   v-model="conclusao" 
                   label="Conclusao"
+                  maxlength="10" 
                   style="max-width:145px;"
                   ref="dtconclusao"
                   lazy-rules
                   :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"     
                 >
+                <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
+                        <q-date v-model="clconclusao"  @input="() => $refs.qDateProxy2.hide() " />
+                 </q-popup-proxy>
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
-                      <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
+                      <!-- <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
                         <q-date v-model="clconclusao"  @input="() => $refs.qDateProxy2.hide() " />
-                      </q-popup-proxy>
+                      </q-popup-proxy> -->
                     </q-icon>
                   </template>
 
