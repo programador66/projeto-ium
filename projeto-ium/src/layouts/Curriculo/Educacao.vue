@@ -51,33 +51,40 @@
           <q-item-label>
             <div>
               <span style="float:left">
-              <q-input v-model="inicio" 
-              label="Inicio" 
-              style="max-width:148px"
-              mask="##/##/####"
-              hint="ex: 00/00/0000"
-              ref="dtinicio"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
-              > 
-                <template v-slot:append>
-                  <q-icon name="event" />
-                </template>
-              </q-input>
+                <q-input filled 
+                  v-model="inicio" 
+                  label="Inicio" 
+                  style="max-width:148px"
+                  ref="dtinicio"
+                  lazy-rules
+                  :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"    
+                > 
+                  <template v-slot:append>
+                    <q-icon name="event" class="cursor-pointer">
+                      <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
+                        <q-date v-model="clinicio" @input="() => $refs.qDateProxy1.hide()" />
+                      </q-popup-proxy>
+                    </q-icon>
+                  </template>
+                </q-input>
               </span>
               <span style="float:right">
-              <q-input v-model="conclusao"
-              label="Conclusao"
-              style="max-width:145px;"
-              mask="##/##/####"
-              hint="ex: 00/00/0000"
-              ref="dtconclusao"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" />
-                </template>
+                <q-input filled 
+                  v-model="conclusao" 
+                  label="Conclusao"
+                  style="max-width:145px;"
+                  ref="dtconclusao"
+                  lazy-rules
+                  :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"     
+                >
+                  <template v-slot:append>
+                    <q-icon name="event" class="cursor-pointer">
+                      <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
+                        <q-date v-model="clconclusao"  @input="() => $refs.qDateProxy2.hide() " />
+                      </q-popup-proxy>
+                    </q-icon>
+                  </template>
+
               </q-input>
               </span>
             </div>    
@@ -120,42 +127,114 @@ export default {
      curso:null,
      instituicao:null,
      inicio:null,
+     clinicio: null,
+     clconclusao: null,
      conclusao:null,
      existeEducacao:false
     }
   },
+  watch:{
+    clinicio(val) {
+        if (val == "") {
+          this.inicio = " ";
+          this.$refs.dtinicio.resetValidation();
+        } else {
+          const ndInicio = new  Date(val);
+          this.inicio = ndInicio.toLocaleDateString();
+        }
+      
+       
+    },
+    clconclusao(val) {
+
+       if (val == "") {
+         console.log("test 1");
+          this.conclusao = " ";
+          this.$refs.dtconclusao.resetValidation();
+        } else {
+          const ndConclusao = new  Date(val);
+          this.conclusao = ndConclusao.toLocaleDateString();
+        }
+      
+    }
+  },
    methods: {
+     validaCampos(){
+        this.$refs.curso.validate();
+        this.$refs.instituicao.validate();
+        this.$refs.dtinicio.validate();
+        this.$refs.dtconclusao.validate();
+
+        if (
+          this.$refs.curso.hasError || this.$refs.instituicao.hasError 
+          || this.$refs.dtinicio.hasError || this.$refs.dtconclusao.hasError
+          ) 
+        {
+          return true;
+        }
+        return false;
+     },
+     resetaCampos(){
+      this.curso = null;
+      this.instituicao = null;
+      this.inicio = "";
+      this.conclusao = "";
+      this.clinicio = "";
+      this.clconclusao = "";
+      this.$refs.curso.resetValidation();
+      this.$refs.instituicao.resetValidation();
+    
+        console.log("test 2");
+     },
     perfil(){
 
       // this.$emit('stepper',3);
     },
     adicionarEducacao() {
-      this.$refs.curso.validate();
-      this.$refs.instituicao.validate();
-      this.$refs.dtinicio.validate();
-      this.$refs.dtconclusao.validate();
-
-      if (this.$refs.curso.hasError || this.$refs.instituicao.hasError || this.$refs.dtinicio.hasError || this.$refs.dtconclusao.hasError) {
-        return this.formHasError = true;
-      }
-
-      const educacao = {
+      
+      if(this.validaCampos()) {
+        this.formHasError = true;
+      }else{
+        const educacao = {
         curso: this.curso,
         instituicao: this.instituicao,
         inicio: this.inicio,
         conclusao: this.conclusao
+        }
+
+        this.existeEducacao = true; 
+        this.objEducacao.push(educacao);
+        this.resetaCampos(); 
+      
       }
-
-       this.existeEducacao = true; 
-       this.objEducacao.push(educacao);
-       console.log(this.objEducacao);
-
     },
     excluir(id) {
       
       this.objEducacao.splice(id,1);
 
       console.log(this.objEducacao);
+    },
+    cadastroEducacao() {
+      
+      if(this.objEducacao < 0) {
+        if(this.validaCampos()){
+          this.formHasError = true;
+        }     
+      }else{
+        if (this.curso != null && this.instituicao != null) {
+          const educacao = {
+          curso: this.curso,
+          instituicao: this.instituicao,
+          inicio: this.inicio,
+          conclusao: this.conclusao
+          }
+          this.objEducacao.push(educacao);    
+        } 
+
+        console.log('----inserçãoo------');
+        console.log(this.objEducacao);
+
+      }
     }
   }
 }
