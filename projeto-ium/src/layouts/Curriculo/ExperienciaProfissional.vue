@@ -34,29 +34,34 @@
           <q-item-label>
             <div>
               <span style="float:left">
-              <q-input v-model="inicio" 
-              label="Inicio" 
-              style="max-width:150px"
-              mask="##/##/####"
-              hint="ex: 00/00/0000"
-              > 
-                <template v-slot:append>
-                  <q-icon name="event" />
-                </template>
-              </q-input>
+                <q-input v-model="inicio" 
+                label="Inicio" 
+                style="max-width:150px"
+                maxlength="10"
+                ref="inicio"
+                > 
+                  <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
+                      <q-date v-model="clinicio" @input="() => $refs.qDateProxy1.hide()" />
+                  </q-popup-proxy>              
+                  <template v-slot:append>
+                    <q-icon name="event" />
+                  </template>
+                </q-input>
               </span>
-              <span style="float:right">
-              <q-input v-model="saida"
-              label="Saída"
-              style="max-width:150px;"
-              mask="##/##/####"
-              hint="ex: 00/00/0000"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" />
-                </template>
-              </q-input>
-              </span>
+                <span style="float:right">
+                  <q-input v-model="saida"
+                  label="Saída"
+                  style="max-width:150px;"
+                  ref="dtsaida"
+                  >
+                  <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
+                        <q-date v-model="clsaida"  @input="() => $refs.qDateProxy2.hide() " />
+                  </q-popup-proxy>
+                    <template v-slot:append>
+                      <q-icon name="event" />
+                    </template>
+                  </q-input>
+                </span>
             </div>    
           </q-item-label> 
         </q-item-section>   
@@ -97,9 +102,34 @@ export default {
      objEducacao:[{"titulo":"Sistemas de Informação","instituicao":"FUCAPI","conclusao":2016}], 
      cargo:null,
      empresa:null,
+     clinicio:null,
+     clsaida:null,
      inicio:null,
      saida:null,
      existeEducacao:false
+    }
+  },
+  watch: {
+    clinicio(val) {
+     if (val == "") {
+          this.inicio = " ";
+          // this.$refs.dtinicio.resetValidation();
+        } else {
+          const ndInicio = new  Date(val);
+          this.inicio = ndInicio.toLocaleDateString();
+        }
+    },
+    clsaida(val) {
+
+       if (val == "") {
+         console.log("test 1");
+          this.saida = " ";
+          // this.$refs.dtconclusao.resetValidation();
+        } else {
+          const ndSaida = new  Date(val);
+          this.saida = ndSaida.toLocaleDateString();
+        }
+      
     }
   },
    methods: {

@@ -84,7 +84,7 @@
                   :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"     
                 >
                 <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
-                        <q-date v-model="clconclusao"  @input="() => $refs.qDateProxy2.hide() " />
+                    <q-date v-model="clconclusao"  @input="() => $refs.qDateProxy2.hide() " />
                  </q-popup-proxy>
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
@@ -126,7 +126,7 @@
 </template>
 
 <script>
-
+import FormacaoEscolar from "../../api/formacaoEscolar"
 
 export default {
   name: 'Educacao',
@@ -192,13 +192,7 @@ export default {
       this.clconclusao = "";
       this.$refs.curso.resetValidation();
       this.$refs.instituicao.resetValidation();
-    
-        console.log("test 2");
      },
-    perfil(){
-
-      // this.$emit('stepper',3);
-    },
     adicionarEducacao() {
       
       if(this.validaCampos()) {
@@ -208,7 +202,8 @@ export default {
         curso: this.curso,
         instituicao: this.instituicao,
         inicio: this.inicio,
-        conclusao: this.conclusao
+        conclusao: this.conclusao,
+        id_user:JSON.parse(sessionStorage.getItem('usuario')).id
         }
 
         this.existeEducacao = true; 
@@ -221,29 +216,47 @@ export default {
       
       this.objEducacao.splice(id,1);
 
-      console.log(this.objEducacao);
     },
     cadastroEducacao() {
       
-      if(this.objEducacao < 0) {
-        if(this.validaCampos()){
-          this.formHasError = true;
-        }     
-      }else{
-        if (this.curso != null && this.instituicao != null) {
-          const educacao = {
-          curso: this.curso,
-          instituicao: this.instituicao,
-          inicio: this.inicio,
-          conclusao: this.conclusao
-          }
-          this.objEducacao.push(educacao);    
-        } 
+      // if(this.objEducacao < 0) {
+      //   if(this.validaCampos()){
+      //     this.formHasError = true;
+      //   }     
+      // }else{
+      //   if (this.curso != null && this.instituicao != null) {
+      //     const educacao = {
+      //     curso: this.curso,
+      //     instituicao: this.instituicao,
+      //     inicio: this.inicio,
+      //     conclusao: this.conclusao,
+      //     id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+      //     }
+      //     this.objEducacao.push(educacao);    
+      //   } 
 
-        console.log('----inserçãoo------');
-        console.log(this.objEducacao);
+      //   FormacaoEscolar.seFormacaoEscolar({formacao:this.objEducacao})
+      //   .then(Response => {
+          
+      //     if (Response.data.success) {
+      //       const message = Response.data.message;   
+      //       this.$emit('stepper',3);
+      //     } else {
+      //       const e = Response.data.message; 
+      //         this.$q.notify({
+      //         color: 'red',
+      //         timeout: 1500,
+      //         textColor: 'white',
+      //         message: e,
+      //         actions: [{icon: 'close', color: 'white'}]
+      //       })
+      //     }
+          
+      //   })
 
-      }
+      // }
+      this.$emit('stepper',3);
+
     }
   }
 }

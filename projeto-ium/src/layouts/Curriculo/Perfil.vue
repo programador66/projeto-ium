@@ -94,44 +94,45 @@
         },
         methods: {
             cadastroCandidato(){
-                this.$q.loading.show();
-                const candidato = {
-                    cpf: this.cpf,
-                    telefone:this.fone,
-                    endereco:this.endereco,
-                    sexo:this.group,
-                    id_user:JSON.parse(sessionStorage.getItem('usuario')).id
-                }
+            //     this.$q.loading.show();
+            //     const candidato = {
+            //         cpf: this.cpf,
+            //         telefone:this.fone,
+            //         endereco:this.endereco,
+            //         sexo:this.group,
+            //         id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+            //     }
                 
-             Candidato.seCandidato(candidato)
-              .then(response => {
-                if (response.data.success) {
+            //  Candidato.seCandidato(candidato)
+            //   .then(response => {
+            //     if (response.data.success) {
                     
-                this.$q.loading.hide();   
-                this.$emit('stepper', 2);
-                } else {
-                    this.$q.loading.hide(); 
+            //     this.$q.loading.hide();   
+            //     this.$emit('stepper', 2);
+            //     } else {
+            //         this.$q.loading.hide(); 
                     
-                    this.$q.notify({
-                    color: 'red',
-                    timeout: 1500,
-                    textColor: 'white',
-                    message: response.data,
-                    actions: [{icon: 'close', color: 'white'}]
-                    })
-                }
+            //         this.$q.notify({
+            //         color: 'red',
+            //         timeout: 1500,
+            //         textColor: 'white',
+            //         message: response.data,
+            //         actions: [{icon: 'close', color: 'white'}]
+            //         })
+            //     }
                    
-              })
-              .catch(e => {
-                this.$q.loading.hide();  
-                this.$q.notify({
-                    color: 'red',
-                    timeout: 1500,
-                    textColor: 'white',
-                    message: e,
-                    actions: [{icon: 'close', color: 'white'}]
-                })
-              })
+            //   })
+            //   .catch(e => {
+            //     this.$q.loading.hide();  
+            //     this.$q.notify({
+            //         color: 'red',
+            //         timeout: 1500,
+            //         textColor: 'white',
+            //         message: e,
+            //         actions: [{icon: 'close', color: 'white'}]
+            //     })
+            //   })
+             this.$emit('stepper', 2);
 
             },
             perfil() {
