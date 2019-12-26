@@ -1,6 +1,5 @@
 <template>
    <div>
-
     <q-card class="" style="width:105%;margin-left:-2.5%;">
       <q-card-section> 
         <q-item-section>
@@ -8,14 +7,18 @@
             <a class="title">Experiência Profissional</a>
           </q-item-label> 
 
-            <template v-if="existeEducacao">
-              <div  v-for="edu in objEducacao" :key="edu">
+            <template v-if="existeExperiencia">
+              <div  v-for="(edu,indice) in objExperiencia" :key="indice">
                 <q-card-section> 
                   <q-item-label>
-                    <span>{{edu.titulo}}</span> <span style="float:right;color:#1E88E5;font-weight:bold;">{{edu.conclusao}}</span>
+                    <span>{{edu.cargo}}</span>
+                    <span style="float:right;color:#1E88E5;font-weight:bold;">
+                      {{edu.saida}}
+                      <span ><q-btn flat round icon="delete" @click="excluir(indice)"/></span>
+                    </span>
                   </q-item-label>
                   <q-item-label>
-                    {{edu.instituicao}}
+                    {{edu.empresa}}
                   </q-item-label>
                 </q-card-section> 
                 <q-separator />
@@ -67,14 +70,14 @@
         </q-item-section>   
       </q-card-section> 
 
-      <q-card-section style="margin-top:4%;">
+      <q-card-section style="margin-top:4%;" v-show="this.cargo != '' && this.empresa != '' && this.inicio != '' && this.saida != ''  ">
         <q-item-label>
           <q-btn
             size="6px"
             round
             color="primary"
             icon="add"
-            @click="existeEducacao=!existeEducacao"  
+            @click="adicionarExperiencia"  
           />
           <a style="margin-left:2%;opacity: 0.6;">Adicionar Experiência</a>
         </q-item-label> 
@@ -83,7 +86,7 @@
 
       <q-card-section style="margin-top:5%;">
         <q-item-section>
-          <q-btn @click="perfil()" color="primary"  label="Proximo" />
+          <q-btn @click="cadastrarExpreriencia()" color="primary"  label="Proximo" />
         </q-item-section> 
       </q-card-section>
 
@@ -93,23 +96,24 @@
 </template>
 
 <script>
-
+import ExperienciaProfissional from "../../api/experienciaProfissional"
 
 export default {
   name: 'Educacao',
   data () {
     return {
-     objEducacao:[{"titulo":"Sistemas de Informação","instituicao":"FUCAPI","conclusao":2016}], 
-     cargo:null,
-     empresa:null,
+     objExperiencia:[], 
+     cargo: '',
+     empresa:'',
      clinicio:null,
      clsaida:null,
-     inicio:null,
-     saida:null,
-     existeEducacao:false
+     inicio:'',
+     saida:'',
+     existeExperiencia:false
     }
   },
   watch: {
+
     clinicio(val) {
      if (val == "") {
           this.inicio = " ";
@@ -130,11 +134,68 @@ export default {
           this.saida = ndSaida.toLocaleDateString();
         }
       
-    }
+    } 
   },
    methods: {
+     excluir(id) {
+      
+      this.objExperiencia.splice(id,1);
+
+    },
+    limpaCampos() {
+      this.empresa = ''
+      this.inicio = ''
+      this.saida = ''
+      this.cargo = ''
+    },
     perfil(){
       this.$emit('stepper',4);
+    },
+    adicionarExperiencia() {
+      const experiencia = {
+        cargo:this.cargo,
+        empresa:this.empresa,
+        inicio:this.inicio,
+        saida:this.saida,
+        id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+      }
+
+      this.objExperiencia.push(experiencia);
+      this.existeExperiencia = true;
+      console.log(this.objExperiencia);
+      this.limpaCampos();
+    },
+    cadastrarExpreriencia() {
+      // if (this.empresa != '' && this.cargo != '' && this.inicio != '' && this.saida != '') {
+
+      // const experiencia = {
+      //   cargo:this.cargo,
+      //   empresa:this.empresa,
+      //   inicio:this.inicio,
+      //   saida:this.saida,
+      //   id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+      // }
+      //   this.objExperiencia.push(experiencia);
+      // }
+
+      // ExperienciaProfissional.seExperienciaProfissional({experiencia:this.objExperiencia})
+      // .then(response => {
+      //     if (response.data.success) {   
+      //       this.$emit('stepper',4);
+      //     } else {
+      //       const e = response.data.message; 
+      //         this.$q.notify({
+      //         color: 'red',
+      //         timeout: 1500,
+      //         textColor: 'white',
+      //         message: e,
+      //         actions: [{icon: 'close', color: 'white'}]
+      //       })
+      //     };
+
+      // })
+      this.$emit('stepper',4);
+
     }
   }
 }
