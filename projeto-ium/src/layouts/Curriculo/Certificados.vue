@@ -37,9 +37,11 @@
               <q-input v-model="data" 
               label="Data" 
               style="max-width:150px"
-              mask="##/##/####"
-              hint="ex: 00/00/0000"
+          
               > 
+                <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="cldata"  @input="() => $refs.qDateProxy2.hide() " />
+                </q-popup-proxy>              
                 <template v-slot:append>
                   <q-icon name="event" />
                 </template>
@@ -59,7 +61,7 @@
             icon="add"
             @click="existeEducacao=!existeEducacao"  
           />
-          <a style="margin-left:2%;opacity: 0.6;">Adicionar Experiência</a>
+          <a style="margin-left:2%;opacity: 0.6;">Adicionar </a>
         </q-item-label> 
 
       </q-card-section>
@@ -86,7 +88,14 @@ export default {
      premio:null,
      emissor:null,
      data:null,
-     existeEducacao:false
+     existeEducacao:false,
+     cldata:null
+    }
+  },
+  watch: {
+    cldata(val) {
+      const dt = new Date(val);
+      this.data = dt.toLocaleDateString();
     }
   },
    methods: {
