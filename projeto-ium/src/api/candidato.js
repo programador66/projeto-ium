@@ -7,6 +7,12 @@ class Candidato extends API{
         const response = await this.api.post('candidato/cadastro',parametros,{...config});
         return response;
     }
+
+    async getCurriculo(parametros) {
+        let config = this.headerToken();
+        const response = await this.api.post('candidato/getCurriculo', parametros, {...config});
+        return response;
+    }
 }
 
 export default new Candidato();

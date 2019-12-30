@@ -107,7 +107,7 @@ export default {
   },
    methods: {
     cadastrarCertificacoesePremios(){
-           this.$q.loading.show();
+      this.$q.loading.show();
       if (this.premio  && this.emissor && this.data != '') {
         const premioCertificao = {
           premio: this.premio,

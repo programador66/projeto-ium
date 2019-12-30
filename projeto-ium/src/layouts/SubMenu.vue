@@ -4,8 +4,8 @@
  
     <q-tabs v-model="tab" class="text-teal" >
     <q-tab label="vagas" class="text" name="one" />
-    <q-tab label="Seleções" class="text" name="two" />
-    <q-tab label="Perfil" class="text" name="three" />
+    <q-tab label="Seleções" class="text" name="two"/>
+    <q-tab label="Perfil" class="text" name="three"/>
     </q-tabs>
 
       <q-separator />
@@ -38,6 +38,8 @@ import vagas from '../layouts/Vagas';
 import selecoes from '../layouts/Selecoes';
 import perfil from '../layouts/Perfil';
 import perfilCompleto from '../layouts/PerfilCompleto';
+import Candidato from "../api/candidato";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   components:{
@@ -48,7 +50,32 @@ export default {
       left: false,
       tab:'one',
       existePerfil:false,
+
     }
+  },
+  computed:{
+    ...mapGetters("jfs/",{
+      teste:"getCurriculo",
+      getDadosPessoais:"getDadosPessoais"
+    })
+      
+  },
+  beforeMount(){
+    const id_user = JSON.parse(sessionStorage.getItem('usuario')).id;
+    Candidato.getCurriculo({id_candidato:id_user}).then(response => {
+      if (response.data.data[0].formacao_escolar.length > 0) {
+        this.existePerfil = true;
+        this.setDadosPessoais(response.data.data[0]);
+      }
+    })
+
+    console.log(this.getDadosPessoais);
+    
+  },
+  methods: {
+    ...mapMutations("jfs",{
+      setDadosPessoais: "setDadosPessoais"
+    })
   }
 }
 </script>

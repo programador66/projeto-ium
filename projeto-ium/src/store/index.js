@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase from 'firebase';
 
-// import example from './module-example'
+import jfs from './modulo-jfs'
 
 Vue.config.productionTip = false;
 
@@ -16,7 +15,7 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      // example
+      jfs
     },
 
     // enable strict mode (adds overhead!)
