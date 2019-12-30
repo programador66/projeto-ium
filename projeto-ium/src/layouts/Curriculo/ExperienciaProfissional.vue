@@ -58,7 +58,7 @@
                   ref="dtsaida"
                   >
                   <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
-                        <q-date v-model="clsaida"  @input="() => $refs.qDateProxy2.hide() " />
+                    <q-date v-model="clsaida"  @input="() => $refs.qDateProxy2.hide() " />
                   </q-popup-proxy>
                     <template v-slot:append>
                       <q-icon name="event" />

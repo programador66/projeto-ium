@@ -1,6 +1,5 @@
 <template>
    <div>
-
     <q-card class="" style="width:105%;margin-left:-2.5%;">
       <q-card-section> 
         <q-item-section>
@@ -9,13 +8,18 @@
           </q-item-label> 
 
             <template v-if="existeEducacao">
-              <div  v-for="edu in objEducacao" :key="edu">
+              <div  v-for="(premio,index) in obj" :key="index">
                 <q-card-section> 
                   <q-item-label>
-                    <span>{{edu.titulo}}</span> <span style="float:right;color:#1E88E5;font-weight:bold;">{{edu.conclusao}}</span>
+                    <span>{{premio.emissor}}</span> 
+                    <span 
+                    style="float:right;color:#1E88E5;font-weight:bold;"
+                    >
+                    {{premio.data}}
+                    </span>
                   </q-item-label>
                   <q-item-label>
-                    {{edu.instituicao}}
+                    {{premio.premio}}
                   </q-item-label>
                 </q-card-section> 
                 <q-separator />
@@ -30,17 +34,20 @@
             <q-input v-model="emissor" label="Emissor"  />
           </q-item-label> 
 
-          
           <q-item-label>
             <div>
               <span style="float:left">
               <q-input v-model="data" 
               label="Data" 
               style="max-width:150px"
-          
               > 
-                <q-popup-proxy ref="qDateProxy2" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="cldata"  @input="() => $refs.qDateProxy2.hide() " />
+                <q-popup-proxy ref="qDateProxy2" 
+                  transition-show="scale" 
+                  transition-hide="scale"
+                >
+                  <q-date v-model="cldata"
+                    @input="() => $refs.qDateProxy2.hide() " 
+                  />
                 </q-popup-proxy>              
                 <template v-slot:append>
                   <q-icon name="event" />
@@ -52,42 +59,42 @@
         </q-item-section>   
       </q-card-section> 
 
-      <q-card-section style="margin-top:4%;">
+      <q-card-section style="margin-top:4%;" v-show="this.obj.length < 2">
         <q-item-label>
           <q-btn
             size="6px"
             round
             color="primary"
             icon="add"
-            @click="existeEducacao=!existeEducacao"  
+            @click="adicionarPremioOucertificacao"  
           />
           <a style="margin-left:2%;opacity: 0.6;">Adicionar </a>
         </q-item-label> 
 
       </q-card-section>
 
-      <q-card-section style="margin-top:5%;">
-        <q-item-section>
-          <q-btn @click="perfil()" color="primary"  label="Proximo" />
-        </q-item-section> 
-      </q-card-section>
+        <q-card-section style="margin-top:5%;">
+          <q-item-section>
+            <q-btn @click="cadastrarCertificacoesePremios()" color="primary"  label="Finalizar" />
+          </q-item-section> 
+        </q-card-section>
 
-    </q-card>   
-               
+    </q-card>                 
   </div>
 </template>
 
 <script>
 
+import Certificacao from "../../api/certificacoesPremios";
 
 export default {
   name: 'Certificados',
   data () {
     return {
-     objEducacao:[{"titulo":"Sistemas de Informação","instituicao":"FUCAPI","conclusao":2016}], 
-     premio:null,
-     emissor:null,
-     data:null,
+     obj:[], 
+     premio:'',
+     emissor:'',
+     data:'',
      existeEducacao:false,
      cldata:null
     }
@@ -99,8 +106,62 @@ export default {
     }
   },
    methods: {
-    perfil(){
-      this.$emit('stepper',5);
+    cadastrarCertificacoesePremios(){
+           this.$q.loading.show();
+      if (this.premio  && this.emissor && this.data != '') {
+        const premioCertificao = {
+          premio: this.premio,
+          emissor: this.emissor,
+          data: this.data,
+          id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+        }
+        this.obj.push(premioCertificao);
+      }
+     
+     Certificacao.setCertificacao({certificacao:this.obj})
+     .then(response => {
+       
+       const msg = response.data.message;
+       if (response.data.success) {
+          this.$q.notify({
+          color: 'green',
+          timeout: 1500,
+          textColor: 'white',
+          message: msg,
+          actions: [{icon: 'close', color: 'white'}]
+          }) 
+          this.$q.loading.hide();
+          
+          setTimeout(() => {
+            this.$router.push("/index");
+          },1600);
+       } else {
+          this.$q.notify({
+            color: 'red',
+            timeout: 1500,
+            textColor: 'white',
+            message: msg,
+            actions: [{icon: 'close', color: 'white'}]
+          }) 
+          this.$q.loading.hide();
+       }
+     })
+
+      
+    },
+    adicionarPremioOucertificacao() {
+     
+      const premioCertificao = {
+        premio: this.premio,
+        emissor: this.emissor,
+        data: this.data,
+        id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+      }
+      this.existeEducacao = true;
+      this.obj.push(premioCertificao);
+      this.premio = '';
+      this.emissor = '';
+      this.data = '';
     }
   }
 }
