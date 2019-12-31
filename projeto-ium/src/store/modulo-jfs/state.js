@@ -9,12 +9,12 @@ export default {
     telefone:null,
     sexo:null
   },
-  formacao_escolar: {
+  formacao_escolar:[
     
-  },
-  certificados: {
+  ],
+  certificados: [
 
-  },
+  ],
   experienciaProfissional: {
 
   }

@@ -56,25 +56,33 @@ export default {
   computed:{
     ...mapGetters("jfs/",{
       teste:"getCurriculo",
-      getDadosPessoais:"getDadosPessoais"
+      getDadosPessoais:"getDadosPessoais",
+      getFormacaoEscolar: "getFormacaoEscolar",
+      getCertificados: "getCertificados"
     })
       
   },
   beforeMount(){
+
     const id_user = JSON.parse(sessionStorage.getItem('usuario')).id;
+
     Candidato.getCurriculo({id_candidato:id_user}).then(response => {
       if (response.data.data[0].formacao_escolar.length > 0) {
         this.existePerfil = true;
         this.setDadosPessoais(response.data.data[0]);
+        this.setFormacaoEscolar(response.data.data[0].formacao_escolar);
+        this.setCertificados(response.data.data[0].certificados);
       }
     })
 
-    console.log(this.getDadosPessoais);
+    console.log(this.getCertificados);
     
   },
   methods: {
     ...mapMutations("jfs",{
-      setDadosPessoais: "setDadosPessoais"
+      setDadosPessoais: "setDadosPessoais",
+      setFormacaoEscolar: "setFormacaoEscolar",
+      setCertificados: "setCertificados"
     })
   }
 }
