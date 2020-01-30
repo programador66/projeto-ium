@@ -1,7 +1,7 @@
 export default {
   
   curriculo: {
-    teste: "hello world"
+    
   },
   dadosPessoais: {
     cpf: null,

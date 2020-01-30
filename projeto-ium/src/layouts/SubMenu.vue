@@ -1,35 +1,31 @@
 <template>
-  
   <div>
- 
     <q-tabs v-model="tab" class="text-teal" >
-    <q-tab label="vagas" class="text" name="one" />
-    <q-tab label="Seleções" class="text" name="two"/>
-    <q-tab label="Perfil" class="text" name="three"/>
+      <q-tab label="vagas" class="text" name="one" />
+      <q-tab label="Seleções" class="text" name="two"/>
+      <q-tab label="Perfil" class="text" name="three"/>
     </q-tabs>
 
-      <q-separator />
-      
-      <q-tab-panels v-model="tab" animated swipeable infinite>
-        <q-tab-panel name="one">
-          <vagas/>
-        </q-tab-panel>
-
-        <q-tab-panel name="two">
-           <selecoes/>
-        </q-tab-panel>
-
-        <q-tab-panel v-if="!existePerfil" name="three" id="perfil">
-           <perfil/>
-        </q-tab-panel>
-
-        <q-tab-panel v-else="" name="three" id="p-completo">
-          <perfil-completo/>
-        </q-tab-panel>
-
-      </q-tab-panels>
+    <q-separator />
     
-   
+    <q-tab-panels v-model="tab" animated swipeable infinite>
+      <q-tab-panel name="one">
+        <vagas/>
+      </q-tab-panel>
+
+      <q-tab-panel name="two">
+          <selecoes/>
+      </q-tab-panel>
+
+      <q-tab-panel v-if="!existePerfil" name="three" id="perfil">
+          <perfil/>
+      </q-tab-panel>
+
+      <q-tab-panel v-else="" name="three" id="p-completo">
+        <perfil-completo/>
+      </q-tab-panel>
+
+    </q-tab-panels>
   </div>
 </template>
 
@@ -55,7 +51,7 @@ export default {
   },
   computed:{
     ...mapGetters("jfs/",{
-      teste:"getCurriculo",
+      getCurriculo:"getCurriculo",
       getDadosPessoais:"getDadosPessoais",
       getFormacaoEscolar: "getFormacaoEscolar",
       getCertificados: "getCertificados"
@@ -70,12 +66,11 @@ export default {
       if (response.data.data[0].formacao_escolar.length > 0) {
         this.existePerfil = true;
         this.setDadosPessoais(response.data.data[0]);
-        this.setFormacaoEscolar(response.data.data[0].formacao_escolar);
-        this.setCertificados(response.data.data[0].certificados);
+        this.setFormacaoEscolar(response.data.data[0].formacao_escolar[0]);
+        this.setCertificados(response.data.data[0].certificados[0]);
+         console.log(this.getCertificados);
       }
     })
-
-    console.log(this.getCertificados);
     
   },
   methods: {
