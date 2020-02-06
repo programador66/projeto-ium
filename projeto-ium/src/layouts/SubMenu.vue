@@ -68,8 +68,10 @@ export default {
         this.setDadosPessoais(response.data.data[0]);
         this.setFormacaoEscolar(response.data.data[0].formacao_escolar[0]);
         this.setCertificados(response.data.data[0].certificados[0]);
-         console.log(this.getCertificados);
+         
       }
+    }).catch(e=> {
+      console.log(e);
     })
     
   },
