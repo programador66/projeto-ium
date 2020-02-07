@@ -106,7 +106,7 @@
                                 :rules="[
                                 val => val !== null && val !== '' || 'Campo obrigatório'
                                 ]"
-                                @keyup.enter="entrar"
+                                @keyup.enter="ciarNovoUsuario"
                         >
                             <template v-slot:append>
                                 <q-icon name="lock"/>
@@ -123,7 +123,7 @@
                             </span>
                             <span style="margin-left:8px">
                                 <q-btn label="Cadastrar" 
-                                    @click="CriarNovoUsuario"
+                                    @click="criarNovoUsuario"
                                     text-color="blue" color="white"
                                 />
                             </span>
@@ -247,7 +247,7 @@
 
 
             },
-            CriarNovoUsuario() {
+            criarNovoUsuario() {
 
                 this.$refs.email.validate();
                 this.$refs.password.validate();

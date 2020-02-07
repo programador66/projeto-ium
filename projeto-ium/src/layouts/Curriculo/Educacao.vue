@@ -127,12 +127,14 @@
 
 <script>
 import FormacaoEscolar from "../../api/formacaoEscolar"
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Educacao',
   data () {
     return {
-     objEducacao:[], 
+     objEducacao:[],
+     id_curso: null, 
      curso:null,
      instituicao:null,
      inicio:null,
@@ -141,6 +143,11 @@ export default {
      conclusao:null,
      existeEducacao:false
     }
+  },
+  computed:{
+    ...mapGetters("jfs/",{
+      getFormacaoEscolar: "getFormacaoEscolar"
+    }),
   },
   watch:{
     clinicio(val) {
@@ -151,13 +158,12 @@ export default {
           const ndInicio = new  Date(val);
           this.inicio = ndInicio.toLocaleDateString();
         }
-      
-       
+          
     },
     clconclusao(val) {
 
        if (val == "") {
-         console.log("test 1");
+         
           this.conclusao = " ";
           this.$refs.dtconclusao.resetValidation();
         } else {
@@ -199,11 +205,12 @@ export default {
         this.formHasError = true;
       }else{
         const educacao = {
-        curso: this.curso,
-        instituicao: this.instituicao,
-        inicio: this.inicio,
-        conclusao: this.conclusao,
-        id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+          id_curso:this.id_curso,
+          curso: this.curso,
+          instituicao: this.instituicao,
+          inicio: this.inicio,
+          conclusao: this.conclusao,
+          id_user:JSON.parse(sessionStorage.getItem('usuario')).id
         }
 
         this.existeEducacao = true; 
@@ -226,15 +233,17 @@ export default {
       }else{
         if (this.curso != null && this.instituicao != null) {
           const educacao = {
-          curso: this.curso,
-          instituicao: this.instituicao,
-          inicio: this.inicio,
-          conclusao: this.conclusao,
-          id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+            id_curso: this.id_curso,  
+            curso: this.curso,
+            instituicao: this.instituicao,
+            inicio: this.inicio,
+            conclusao: this.conclusao,
+            id_user:JSON.parse(sessionStorage.getItem('usuario')).id
           }
-          this.objEducacao.push(educacao);    
+          this.objEducacao.push(educacao);
+           console.log(educacao);    
         } 
-
+       
         FormacaoEscolar.seFormacaoEscolar({formacao:this.objEducacao})
         .then(Response => {
           

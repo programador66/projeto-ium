@@ -7,15 +7,22 @@ export function setDadosPessoais (state,dados) {
 }
 
 export function setFormacaoEscolar(state, dados) {
+
     if (state.formacao_escolar.length == 0) {
-        state.formacao_escolar.push(dados)
-    }
-    
+        state.formacao_escolar = dados;
+    }   
+}
+
+export function setExperienciaProfissional(state, dados) {
+
+    if (state.experienciaProfissional.length == 0) {
+        state.experienciaProfissional = dados;
+    }   
 }
 
 export function setCertificados(state, dados) {
     if (state.certificados.length == 0) {
-        state.certificados.push(dados)
+        state.certificados = dados;
     }
 }
 
@@ -25,4 +32,7 @@ export function setlimpaDados(state,  dados = null) {
     state.dadosPessoais.endereco = null;
     state.dadosPessoais.telefone = null;
     state.dadosPessoais.sexo = null;
+    state.formacao_escolar = [];
+    state.certificados = [];
+    state.experienciaProfissional = [];
 }

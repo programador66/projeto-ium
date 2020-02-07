@@ -15,3 +15,6 @@ export const getCertificados = (state) => {
     return state.certificados
 }
 
+export const getExperienciaProfissional = (state) => {
+    return state.experienciaProfissional
+}

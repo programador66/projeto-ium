@@ -62,7 +62,8 @@ export default {
    data () {
     return {
       formacaoEscolar: null,
-      certificados:null
+      certificados: null,
+      experienciaProfissional: null,
     }
   },
   computed:{
@@ -70,7 +71,8 @@ export default {
       getCurriculo:"getCurriculo",
       getDadosPessoais:"getDadosPessoais",
       getFormacaoEscolar: "getFormacaoEscolar",
-      getCertificados: "getCertificados"
+      getCertificados: "getCertificados",
+      getExperienciaProfissional: "getExperienciaProfissional"
     })
      
   },
@@ -78,7 +80,8 @@ export default {
     
     this.formacaoEscolar = this.getFormacaoEscolar;
     this.certificados = this.getCertificados;
-    
+    this.experienciaProfissional = this.getExperienciaProfissional;
+    console.log(this.experienciaProfissional)
   },
   methods: {
    editarPerfil() {

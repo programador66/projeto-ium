@@ -61,16 +61,16 @@ export default {
   beforeMount(){
 
     const id_user = JSON.parse(sessionStorage.getItem('usuario')).id;
-    console.log(id_user);
+    
     Candidato.getCurriculo({id_candidato:id_user}).then(response => {
 
       this.setDadosPessoais(response.data.data[0]);
 
       if (response.data.data[0].formacao_escolar.length > 0) {
         this.existePerfil = true;  
-        this.setFormacaoEscolar(response.data.data[0].formacao_escolar[0]);
-        this.setCertificados(response.data.data[0].certificados[0]);
-         
+        this.setFormacaoEscolar(response.data.data[0].formacao_escolar);
+        this.setCertificados(response.data.data[0].certificados);
+         this.setExperienciaProfissional(response.data.data[0].experiencia_profissional);
       }
     }).catch(e=> {
       console.log(e);
@@ -81,7 +81,8 @@ export default {
     ...mapMutations("jfs",{
       setDadosPessoais: "setDadosPessoais",
       setFormacaoEscolar: "setFormacaoEscolar",
-      setCertificados: "setCertificados"
+      setCertificados: "setCertificados",
+      setExperienciaProfissional: "setExperienciaProfissional"
     })
   }
 }

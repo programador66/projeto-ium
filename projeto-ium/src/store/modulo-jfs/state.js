@@ -15,9 +15,11 @@ export default {
   certificados: [
 
   ],
-  experienciaProfissional: {
+  experienciaProfissional: [
+    
+  ]
 
-  }
+  
 
   }
   
