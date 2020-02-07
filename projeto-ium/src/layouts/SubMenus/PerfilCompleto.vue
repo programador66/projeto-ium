@@ -22,28 +22,30 @@
 
       <q-card-section >
         <div class="title" >Trabalho</div>
-        <q-card-section>
-          <div class="title-descricao">
-            Bel. Ciência da Computação <span style="float:right;color:#1E88E5;font-weight:bold;">2018</span>
-          </div>
-          <div class="sub-title-descricao">
-            Universidade Federal do Amazonas 
-          </div> 
-        </q-card-section>    
+        <div v-for="(emprego,index) in experienciaProfissional" :key="index"> 
+          <q-card-section>
+              <div class="title-descricao">
+                {{emprego.cargo}} <span style="float:right;color:#1E88E5;font-weight:bold;">{{emprego.data_saida}}</span>
+              </div>
+              <div class="sub-title-descricao">
+                {{emprego.empresa}} 
+              </div>  
+          </q-card-section>
+       </div>      
       </q-card-section>
 
       <q-card-section >
         <div class="title" >Certificações</div>
-        <q-card-section>
           <div v-for="(cert,index) in certificados" :key="index">
-            <div class="title-descricao">
-              {{cert.descricao}} <span style="float:right;color:#1E88E5;font-weight:bold;">2018</span>
-            </div>
-            <div class="sub-title-descricao">
-              {{cert.emissor}}
-            </div>
+             <q-card-section>
+              <div class="title-descricao">
+                {{cert.descricao}} <span style="float:right;color:#1E88E5;font-weight:bold;">{{cert.data}}</span>
+              </div>
+              <div class="sub-title-descricao">
+                {{cert.emissor}}
+              </div>  
+            </q-card-section> 
           </div>   
-        </q-card-section>    
       </q-card-section>
 
     </q-card>
@@ -94,7 +96,9 @@ export default {
 
 
 <style scoped>
-
+.my-card{
+  height: auto;
+}
 .title{
   color:#1E88E5;
   font-weight:bold;
