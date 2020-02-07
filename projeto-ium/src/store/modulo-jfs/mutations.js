@@ -7,9 +7,14 @@ export function setDadosPessoais (state,dados) {
 }
 
 export function setFormacaoEscolar(state, dados) {
-    state.formacao_escolar.push(dados)
+    if (state.formacao_escolar.length == 0) {
+        state.formacao_escolar.push(dados)
+    }
+    
 }
 
 export function setCertificados(state, dados) {
-    state.certificados.push(dados)
+    if (state.certificados.length == 0) {
+        state.certificados.push(dados)
+    }
 }

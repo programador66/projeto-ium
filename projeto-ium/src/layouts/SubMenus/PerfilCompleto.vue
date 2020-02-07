@@ -75,8 +75,10 @@ export default {
      
   },
   mounted(){
-    this.formacaoEscolar = this.getFormacaoEscolar
-    this.certificados = this.getCertificados
+    
+    this.formacaoEscolar = this.getFormacaoEscolar;
+    this.certificados = this.getCertificados;
+    
   },
   methods: {
    

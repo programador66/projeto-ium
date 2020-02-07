@@ -56,17 +56,18 @@
                     </q-input>
 
                     <q-input
-                            filled
-                            ref="password"
-                            color="white"
-                            v-model="senha"
-                            label="Senha"
-                            dark
-                            lazy-rules
-                            type="password"
-                            :rules="[
-              val => val !== null && val !== '' || 'Campo obrigatório'
-            ]"
+                        filled
+                        ref="password"
+                        color="white"
+                        v-model="senha"
+                        label="Senha"
+                        dark
+                        lazy-rules
+                        type="password"
+                        :rules="[
+                        val => val !== null && val !== '' || 'Campo obrigatório'
+                        ]"
+                        @keyup.enter="entrar"
                     >
                         <template v-slot:append>
                             <q-icon name="lock"/>
@@ -77,8 +78,12 @@
 
                         <span id="recuperar-senha"> Esqueci minha senha </span>
                         <div style="margin-top:8%;">
-                            <q-btn label="Login" style="width: 100%;height:50px;" @click="entrar" outline
-                                   text-color="white"/>
+                            <q-btn label="Login" 
+                                style="width: 100%;height:50px;" 
+                                @click="entrar" 
+                                outline
+                                text-color="white"
+                            />
                         </div>
 
                         <div id="ntc" style="margin-top:5%;">
@@ -99,8 +104,9 @@
                                 lazy-rules
                                 type="password"
                                 :rules="[
-              val => val !== null && val !== '' || 'Campo obrigatório'
-            ]"
+                                val => val !== null && val !== '' || 'Campo obrigatório'
+                                ]"
+                                @keyup.enter="entrar"
                         >
                             <template v-slot:append>
                                 <q-icon name="lock"/>
@@ -108,10 +114,19 @@
                         </q-input>
 
                         <div id="btnCadastrar">
-                            <span><q-btn label="Cancelar" @click="cancelaCadastro()" text-color="blue"
-                                         color="white"/></span>
-                            <span style="margin-left:8px"><q-btn label="Cadastrar" @click="CriarNovoUsuario"
-                                                                 text-color="blue" color="white"/></span>
+                            <span>
+                                <q-btn label="Cancelar" 
+                                    @click="cancelaCadastro()" 
+                                    text-color="blue"
+                                    color="white"
+                                />
+                            </span>
+                            <span style="margin-left:8px">
+                                <q-btn label="Cadastrar" 
+                                    @click="CriarNovoUsuario"
+                                    text-color="blue" color="white"
+                                />
+                            </span>
                         </div>
 
                     </div>
