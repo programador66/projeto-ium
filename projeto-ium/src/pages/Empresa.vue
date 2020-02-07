@@ -11,7 +11,7 @@
 </style>
 
 <script>
-import empresa from '../layouts/EmpresaPerfil'
+import empresa from '../layouts/Empresa/EmpresaPerfil';
 
 export default {
     components:{

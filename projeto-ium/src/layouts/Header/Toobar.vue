@@ -101,8 +101,8 @@
 </template>
 
 <script>
-import imagememp from '../img/avatar2.jpg';
-import subMenu from './SubMenu';
+import imagememp from '../../img/avatar2.jpg';
+import subMenu from '../../layouts/SubMenus/SubMenu'
     export default {
         components: {
             subMenu

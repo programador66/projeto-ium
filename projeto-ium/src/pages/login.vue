@@ -11,7 +11,7 @@
 </style>
 
 <script>
-import login from '../layouts/Login'
+import login from '../layouts/LoginUsuario/Login'
 
 export default {
     components:{

@@ -9,7 +9,7 @@
 </style>
 
 <script>
-import toolbar  from '../layouts/Toobar'
+import toolbar  from '../layouts/Header/Toobar'
 
 export default {
     components:{

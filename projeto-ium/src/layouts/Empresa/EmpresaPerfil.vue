@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import imagem from '../img/user.png';
+import imagem from '../../img/user.png';
 
 export default {
   name: 'Login',

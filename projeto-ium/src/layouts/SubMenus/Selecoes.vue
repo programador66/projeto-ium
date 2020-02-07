@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import imagememp from '../img/avatar2.jpg';
+import imagememp from '../../img/avatar2.jpg';
 
 export default {
    data () {

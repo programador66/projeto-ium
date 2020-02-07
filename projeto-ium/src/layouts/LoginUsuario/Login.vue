@@ -122,8 +122,8 @@
 </template>
 
 <script>
-    import imagem from '../img/user.png';
-    import API from "../api/api";
+    import imagem from '../../img/user.png';
+    import API from "../../api/api";
 
     export default {
         name: 'Login',

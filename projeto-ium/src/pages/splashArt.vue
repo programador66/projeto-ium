@@ -11,7 +11,7 @@
 </style>
 
 <script>
-import splashArt from '../layouts/splashArt'
+import splashArt from '../layouts/Splash/splashArt'
 
 export default {
     components:{

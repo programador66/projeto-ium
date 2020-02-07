@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import vagas from '../layouts/Vagas';
-import selecoes from '../layouts/Selecoes';
-import perfil from '../layouts/Perfil';
-import perfilCompleto from '../layouts/PerfilCompleto';
-import Candidato from "../api/candidato";
+import vagas from './Vagas';
+import selecoes from './Selecoes';
+import perfil from './Perfil';
+import perfilCompleto from './PerfilCompleto';
+import Candidato from "../../api/candidato";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
@@ -91,7 +91,7 @@ export default {
     color: white
   }
   #perfil{
-    background-image: url("../img/ilustracao.png");
+    background-image: url("../../img/ilustracao.png");
     background-color: white;
     height: 800px;
   }

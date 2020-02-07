@@ -9,8 +9,8 @@
               />
         </div>
 
-      <div style="margin-left:30%;color:white;font-family:Helvetica Neue;font-weight:bold;font-size:20px">
-        <span> Job For Students</span>
+      <div id="msg1">
+        <div style="margin-top:13%;">SIS Estudante-Empresa</div>
       </div>
 
       <div class="splash" v-show="mostrarProgress">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import imagem from '../img/user.png';
+import imagem from '../../img/user.png';
 
 export default {
   name: 'splashArt',
@@ -66,13 +66,18 @@ export default {
   transform: scale(1.3);
 }
 .splash {
-  margin:20% 43%;
+  margin:20% 46%;
+  display: flex;
+  justify-content: center
 }
 #login {
   background-color:#1E88E5;
 }
 #foto{
-  margin:20% 28%;
+  /* margin:20% 28%; */
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 
 #ntc{
@@ -80,7 +85,16 @@ export default {
   margin:5% 16%;
 }
 
-
+#msg1{
+  /* margin-left:22%; */
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  color:white;
+  font-family:Helvetica Neue;
+  font-weight:bold;
+  font-size:20px;
+}
 
 @media only screen and (max-width:320px) {
  

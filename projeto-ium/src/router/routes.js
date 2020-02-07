@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: '/',
-    component: () => import('pages/splashArt')
+    component: () => import('pages/splashArt.vue')
   },
   {
     path: '/vagas',
