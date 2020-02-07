@@ -18,3 +18,11 @@ export function setCertificados(state, dados) {
         state.certificados.push(dados)
     }
 }
+
+export function setlimpaDados(state,  dados = null) {
+    
+    state.dadosPessoais.cpf = null;
+    state.dadosPessoais.endereco = null;
+    state.dadosPessoais.telefone = null;
+    state.dadosPessoais.sexo = null;
+}

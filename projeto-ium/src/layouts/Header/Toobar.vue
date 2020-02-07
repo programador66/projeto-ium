@@ -102,7 +102,9 @@
 
 <script>
 import imagememp from '../../img/avatar2.jpg';
-import subMenu from '../../layouts/SubMenus/SubMenu'
+import subMenu from '../../layouts/SubMenus/SubMenu';
+import { mapMutations } from 'vuex';
+
     export default {
         components: {
             subMenu
@@ -124,6 +126,9 @@ import subMenu from '../../layouts/SubMenus/SubMenu'
             }
         },
         methods: {
+            ...mapMutations("jfs",{
+                setlimpaDados: "setlimpaDados",
+            }),
             chat() {
                 alert('em construção');
             },
@@ -136,7 +141,9 @@ import subMenu from '../../layouts/SubMenus/SubMenu'
                     persistent: true
                 }).onOk(() => {
                     sessionStorage.clear();
-                    this.$router.push("/")
+                    this.setlimpaDados();
+                    this.$router.push("/");
+                    
                 }).onCancel(() => {
                     console.log('>>>> Cancel')
                 })

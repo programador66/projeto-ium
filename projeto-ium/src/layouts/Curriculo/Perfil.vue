@@ -70,6 +70,7 @@
 <script>
 
     import Candidato from "../../api/candidato";
+    import { mapGetters } from "vuex";
 
     export default {
         name: 'DadosPessoais',
@@ -89,10 +90,23 @@
         },
         mounted(){
             if (sessionStorage.getItem('usuario')) {
-                this.nomecompleto = JSON.parse(sessionStorage.getItem('usuario')).name
-            }   
+                this.nomecompleto = JSON.parse(sessionStorage.getItem('usuario')).name;
+            }
+            
+            this.setDadospessoaisForm();
+        },
+        computed:{
+             ...mapGetters("jfs/",{
+                getDadosPessoais:"getDadosPessoais",
+             })
         },
         methods: {
+            setDadospessoaisForm() {
+                this.cpf      = this.getDadosPessoais.cpf ? String(this.getDadosPessoais.cpf) : "";
+                this.endereco = this.getDadosPessoais.endereco ? String(this.getDadosPessoais.endereco) : "";
+                this.fone     = this.getDadosPessoais.telefone ? String(this.getDadosPessoais.telefone) : "";
+                this.group    = this.getDadosPessoais.sexo ? String(this.getDadosPessoais.sexo) : "";
+            },
             cadastroCandidato(){
                 this.$q.loading.show();
                 const candidato = {
@@ -132,12 +146,9 @@
                     actions: [{icon: 'close', color: 'white'}]
                 })
               })
-             this.$emit('stepper', 2);
+            //  this.$emit('stepper', 2);
 
             },
-            perfil() {
-                this.$emit('stepper', 2);
-            }
         }
     }
 </script>

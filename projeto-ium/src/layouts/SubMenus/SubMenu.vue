@@ -63,9 +63,11 @@ export default {
     const id_user = JSON.parse(sessionStorage.getItem('usuario')).id;
 
     Candidato.getCurriculo({id_candidato:id_user}).then(response => {
+
+      this.setDadosPessoais(response.data.data[0]);
+      
       if (response.data.data[0].formacao_escolar.length > 0) {
-        this.existePerfil = true;
-        this.setDadosPessoais(response.data.data[0]);
+        this.existePerfil = true;  
         this.setFormacaoEscolar(response.data.data[0].formacao_escolar[0]);
         this.setCertificados(response.data.data[0].certificados[0]);
          
