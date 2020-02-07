@@ -146,8 +146,6 @@
                     actions: [{icon: 'close', color: 'white'}]
                 })
               })
-            //  this.$emit('stepper', 2);
-
             },
         }
     }

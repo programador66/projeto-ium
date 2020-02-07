@@ -166,35 +166,35 @@ export default {
       this.limpaCampos();
     },
     cadastrarExpreriencia() {
-      // if (this.empresa != '' && this.cargo != '' && this.inicio != '' && this.saida != '') {
+      if (this.empresa != '' && this.cargo != '' && this.inicio != '' && this.saida != '') {
 
-      // const experiencia = {
-      //   cargo:this.cargo,
-      //   empresa:this.empresa,
-      //   inicio:this.inicio,
-      //   saida:this.saida,
-      //   id_user:JSON.parse(sessionStorage.getItem('usuario')).id
-      // }
-      //   this.objExperiencia.push(experiencia);
-      // }
+      const experiencia = {
+        cargo:this.cargo,
+        empresa:this.empresa,
+        inicio:this.inicio,
+        saida:this.saida,
+        id_user:JSON.parse(sessionStorage.getItem('usuario')).id
+      }
+        this.objExperiencia.push(experiencia);
+      }
 
-      // ExperienciaProfissional.seExperienciaProfissional({experiencia:this.objExperiencia})
-      // .then(response => {
-      //     if (response.data.success) {   
-      //       this.$emit('stepper',4);
-      //     } else {
-      //       const e = response.data.message; 
-      //         this.$q.notify({
-      //         color: 'red',
-      //         timeout: 1500,
-      //         textColor: 'white',
-      //         message: e,
-      //         actions: [{icon: 'close', color: 'white'}]
-      //       })
-      //     };
+      ExperienciaProfissional.seExperienciaProfissional({experiencia:this.objExperiencia})
+      .then(response => {
+          if (response.data.success) {   
+            this.$emit('stepper',4);
+          } else {
+            const e = response.data.message; 
+              this.$q.notify({
+              color: 'red',
+              timeout: 1500,
+              textColor: 'white',
+              message: e,
+              actions: [{icon: 'close', color: 'white'}]
+            })
+          };
 
-      // })
-      this.$emit('stepper',4);
+      })
+  
 
     }
   }

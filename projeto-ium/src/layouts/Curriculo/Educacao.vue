@@ -255,7 +255,6 @@ export default {
         })
 
       }
-      this.$emit('stepper',3);
 
     }
   }

@@ -49,7 +49,7 @@
     </q-card>
 
      <q-page-sticky position="bottom-right" :offset="[18, 18]">
-        <q-btn fab icon="edit" color="blue" />
+        <q-btn fab icon="edit" color="blue" @click="editarPerfil()" />
       </q-page-sticky>
   </div>   
 </template>
@@ -81,7 +81,9 @@ export default {
     
   },
   methods: {
-   
+   editarPerfil() {
+     this.$router.push("/perfil-curriculo");
+   }
   }
    
 }
