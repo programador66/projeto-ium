@@ -17,9 +17,9 @@ export default {
   ],
   experienciaProfissional: [
     
-  ]
+  ],
 
-  
+  editar: false
 
   }
   

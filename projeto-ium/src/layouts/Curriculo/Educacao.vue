@@ -28,13 +28,14 @@
             </template>
 
           <q-item-label style="margin-top:2%;">
-            <q-input 
+            <q-input v-if="!getEditar"
               v-model="curso" 
               label="Curso"
               ref="curso"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
             />
+            <q-select v-else v-model="selectEducao" :options="options" label="Selecionar Educação" />
           </q-item-label>
 
           <q-item-label>
@@ -44,7 +45,7 @@
               ref="instituicao"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"
-                />
+            />
           </q-item-label> 
 
           
@@ -56,14 +57,13 @@
                   maxlength="10" 
                   label="Inicio" 
                   style="max-width:148px"
-                  ref="dtinicio"
-                  
+                  ref="dtinicio"                
                   lazy-rules
                   :rules="[ val => val && val.length > 0 || 'Campo obrigatório']"    
                 > 
-                   <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
-                        <q-date v-model="clinicio" @input="() => $refs.qDateProxy1.hide()" />
-                   </q-popup-proxy>
+                  <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
+                      <q-date v-model="clinicio" @input="() => $refs.qDateProxy1.hide()" />
+                  </q-popup-proxy>
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
                       <!-- <q-popup-proxy ref="qDateProxy1" transition-show="scale" transition-hide="scale">
@@ -141,15 +141,27 @@ export default {
      clinicio: null,
      clconclusao: null,
      conclusao:null,
-     existeEducacao:false
+     existeEducacao:false,
+     options: [],
+     selectEducao:null
     }
+  },
+  mounted() {
+    console.log(this.getFormacaoEscolar);
+    
+    this.options = this.getFormacaoEscolar.map(formacao => formacao.curso)
   },
   computed:{
     ...mapGetters("jfs/",{
-      getFormacaoEscolar: "getFormacaoEscolar"
+      getFormacaoEscolar: "getFormacaoEscolar",
+      getEditar: "getEditar"
     }),
+    
   },
   watch:{
+    selectEducao(val) {
+      console.log(val);
+    },
     clinicio(val) {
         if (val == "") {
           this.inicio = " ";
@@ -174,6 +186,9 @@ export default {
     }
   },
    methods: {
+     setCamposEducacao(){
+
+     },
      validaCampos(){
         this.$refs.curso.validate();
         this.$refs.instituicao.validate();

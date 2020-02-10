@@ -58,7 +58,7 @@
 
 <script>
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
    data () {
@@ -86,7 +86,11 @@ export default {
     console.log(this.experienciaProfissional)
   },
   methods: {
+    ...mapMutations("jfs/",{
+      setEditar: "setEditar"
+    }),
    editarPerfil() {
+     this.setEditar(true);
      this.$router.push("/perfil-curriculo");
    }
   }

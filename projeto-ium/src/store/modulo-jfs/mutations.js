@@ -36,3 +36,7 @@ export function setlimpaDados(state,  dados = null) {
     state.certificados = [];
     state.experienciaProfissional = [];
 }
+
+export function setEditar(state, dados ) {
+    state.editar = dados;
+}

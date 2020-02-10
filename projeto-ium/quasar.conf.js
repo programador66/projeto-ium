@@ -80,7 +80,8 @@ module.exports = function (ctx) {
         'QOptionGroup',
         'QPageScroller',
         'QDate',
-        'QPopupProxy'
+        'QPopupProxy',
+        'QSelect'
       ],
 
       directives: [

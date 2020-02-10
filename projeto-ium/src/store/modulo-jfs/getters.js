@@ -18,3 +18,7 @@ export const getCertificados = (state) => {
 export const getExperienciaProfissional = (state) => {
     return state.experienciaProfissional
 }
+
+export const  getEditar = (state) => {
+    return state.editar;
+}
