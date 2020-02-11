@@ -2,9 +2,15 @@ import API from './api';
 
 class FormacaoEscolar extends API{
 
-    async seFormacaoEscolar(parametros){
+    async setFormacaoEscolar(parametros){
         let config = this.headerToken();
         const response = await this.api.post('candidato/formacao',parametros,{...config});
+        return response;
+    }
+
+    async updateFormacaoEscolar(parametros){
+        let config = this.headerToken();
+        const response = await this.api.post('candidato/update-formacao',parametros,{...config});
         return response;
     }
 }

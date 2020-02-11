@@ -22,7 +22,7 @@
       </q-tab-panel>
 
       <q-tab-panel v-else="" name="three" id="p-completo">
-        <perfil-completo/>
+        <div style="height: 500px;overflow-y: auto;"><perfil-completo/></div>
       </q-tab-panel>
 
     </q-tab-panels>

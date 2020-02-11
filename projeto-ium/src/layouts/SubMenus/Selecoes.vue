@@ -4,7 +4,7 @@
       <q-page-container>
         <q-page padding> 
           <q-list bordered animated>
-            <div v-for="c in 4" :key="c">
+            <div v-for="c in 6" :key="c">
             <q-card class="my-card" style="margin-bottom:3%;">
                 <q-item>
                     <q-item-section avatar>
@@ -35,7 +35,7 @@
            
             </div>
           </q-list>
-            <div style="height:50px;">
+            <div style="height:60px;">
               <h1></h1>
           </div>
           <!-- place QPageScroller at end of page -->

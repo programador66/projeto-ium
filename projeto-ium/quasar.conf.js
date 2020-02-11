@@ -81,11 +81,13 @@ module.exports = function (ctx) {
         'QPageScroller',
         'QDate',
         'QPopupProxy',
-        'QSelect'
+        'QSelect',
+        'QDialog',
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup'
       ],
 
       // Quasar plugins
