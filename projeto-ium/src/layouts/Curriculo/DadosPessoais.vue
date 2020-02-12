@@ -6,7 +6,8 @@
       <q-toolbar class="bg-primary text-white" style="height:55px;">
       <q-btn flat round dense icon="keyboard_backspace" class="q-mr-sm" @click="step > 1 ? $refs.stepper.previous(): home() " />
       
-      <q-toolbar-title >Criar Perfil</q-toolbar-title>
+      <q-toolbar-title v-if="!getEditar" >Criar Perfil</q-toolbar-title>
+      <q-toolbar-title v-else >Atualizar Perfil</q-toolbar-title>
 
       <q-btn flat label="concluir"/>
     </q-toolbar>
@@ -76,6 +77,7 @@ import perfil from "../Curriculo/Perfil";
 import educacao from "../Curriculo/Educacao";
 import experienciaProfissional  from "../Curriculo/ExperienciaProfissional";
 import certificado from "../Curriculo/Certificados";
+import { mapGetters } from 'vuex';
 
 export default {
   components:{
@@ -86,6 +88,11 @@ export default {
     return {
      step: 1
     }
+  },
+  computed:{
+    ...mapGetters("jfs/",{
+      getEditar: "getEditar"
+    })
   },
    methods: {
     proximo(val){
