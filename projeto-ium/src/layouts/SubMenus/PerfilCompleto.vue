@@ -15,7 +15,7 @@
               </div>
               <div class="items">
                 <span class="item az" >
-                  <q-btn flat round icon="delete" @click="excluirEducacao(formacao.id)"/>
+                  <q-btn flat round icon="delete" @click="confirmaExclusao(formacao.id,'f')"/>
                 </span>
               </div> 
           </div>
@@ -102,6 +102,25 @@ export default {
    editarPerfil(){
      this.setEditar(true);
      this.$router.push("/perfil-curriculo");
+   },
+   confirmaExclusao(val,tpExclusao){
+           this.$q.dialog({
+            title: 'Exclusão de informações',
+            message: 'Deseja realmente excluir as informações?',
+            cancel: true,
+            persistent: true
+          }).onOk(() => {
+            switch (tpExclusao) {
+              case 'f':
+                this.excluirEducacao(val);
+                break;
+              default:
+                console.log('nenhuma informação escolhida');  
+            }
+
+          }).onCancel(() => {
+            console.log('>>>> Cancel')
+          })
    },
    excluirEducacao(val){
 
