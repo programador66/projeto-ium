@@ -106,7 +106,7 @@
                                 :rules="[
                                 val => val !== null && val !== '' || 'Campo obrigatório'
                                 ]"
-                                @keyup.enter="ciarNovoUsuario"
+                                @keyup.enter="criarNovoUsuario"
                         >
                             <template v-slot:append>
                                 <q-icon name="lock"/>

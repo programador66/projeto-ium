@@ -5,7 +5,7 @@
       Educação
     </div>
   
-      <div v-for="(formacao,index) in formacaoEscolar" :key="index">
+      <div v-for="formacao in getFormacaoEscolar" :key="formacao.id">
           <div  class="container">  
               <div class="title-descricao items">
                 {{formacao.curso}}
@@ -15,7 +15,7 @@
               </div>
               <div class="items">
                 <span class="item az" >
-                  <q-btn flat round icon="delete" @click="excluirEducacao(indice)"/>
+                  <q-btn flat round icon="delete" @click="excluirEducacao(formacao.id)"/>
                 </span>
               </div> 
           </div>
@@ -29,14 +29,14 @@
       Trabalho
     </div>
 
-    <div v-for="(emprego,index) in experienciaProfissional" :key="index"> 
+    <div v-for="emprego in getExperienciaProfissional" :key="emprego.id"> 
       <div class="container">
         <div class="title-descricao items">
           {{emprego.cargo}} 
         </div>
         <div class="item az">{{emprego.data_saida}}</div>
         <span class=" item az" >
-          <q-btn flat round icon="delete" @click="excluirEducacao(indice)"/>
+          <q-btn flat round icon="delete"/>
         </span>
 
       </div>
@@ -49,14 +49,14 @@
   
 
     <div class="title" >Certificações</div>
-      <div v-for="(cert,index) in certificados" :key="index">
+      <div v-for="(cert, i) in getCertificados" :key="i">
         <div class="container">
             <div class="title-descricao items">
               {{cert.descricao}}
             </div>
             <span class="items az">{{cert.data}}</span>
              <span class=" item az" >
-                <q-btn flat round icon="delete" @click="excluirEducacao(indice)"/>
+                <q-btn flat round icon="delete"/>
              </span> 
         </div>
 
@@ -75,6 +75,7 @@
 <script>
 
 import { mapGetters, mapMutations } from "vuex";
+import FormacaoEscolarApi from '../../api/formacaoEscolar';
 
 export default {
    data () {
@@ -94,20 +95,39 @@ export default {
     })
      
   },
-  mounted(){
-    
-    this.formacaoEscolar = this.getFormacaoEscolar;
-    this.certificados = this.getCertificados;
-    this.experienciaProfissional = this.getExperienciaProfissional;
-    console.log(this.experienciaProfissional)
-  },
   methods: {
     ...mapMutations("jfs/",{
       setEditar: "setEditar"
     }),
-   editarPerfil() {
+   editarPerfil(){
      this.setEditar(true);
      this.$router.push("/perfil-curriculo");
+   },
+   excluirEducacao(val){
+
+     FormacaoEscolarApi.deleteFormacaoEscolar({id:val})
+     .then(response => {
+       const dados = response;
+       console.log(response);
+       if (dados.data.success) {
+          this.$q.notify({
+            color: 'blue',
+            timeout: 1500,
+            textColor: 'white',
+            message: dados.data.message,
+            actions: [{icon: 'close', color: 'white'}]
+          })
+       } else {
+         this.$q.notify({
+            color: 'red',
+            timeout: 1500,
+            textColor: 'white',
+            message: dados.data.message,
+            actions: [{icon: 'close', color: 'white'}]
+          })
+       }
+     })
+
    }
   }
    
@@ -155,6 +175,6 @@ export default {
   color: black;
   /* border-bottom: tomato solid 1px; */
   margin-bottom: 2.8%;
-  padding: 2%;
+  padding: 0%;
 }
 </style>
