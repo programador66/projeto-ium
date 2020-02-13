@@ -274,7 +274,6 @@ export default {
         this.curso = edu.curso;
       })
 
-
     },
     clinicio(val) {
         if (val == " ") {
