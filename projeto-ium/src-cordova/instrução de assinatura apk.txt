@@ -1,4 +1,6 @@
 
+entrar na pasta /usr/lib/jvm/java-1.8.0-openjdk-amd64/bin
+e craiar a chave com sudo .
 
 criando chave
 ./keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
